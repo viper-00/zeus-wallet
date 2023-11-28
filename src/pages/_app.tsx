@@ -23,16 +23,22 @@ import { extendTheme } from '@chakra-ui/react';
 import { publicProvider } from 'wagmi/providers/public';
 import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
-import { InjectedConnector } from '@wagmi/connectors/injected'
+import { InjectedConnector } from '@wagmi/connectors/injected';
 import { ETH } from 'packages/core/eth';
+import { Coin } from 'packages/api/coin';
+import { hydrateCoins, setAll } from 'lib/store/coin';
 
 async function aa() {
   // const result = await ETH.getTransactionDetail("0xdcd24233fec5e90c85a39faa8c8637e74538c7f9b456ab8884e012fd71c5789d")
   // console.log(result)
+
+  await Coin.getOwnCryptoPrice();
+
+  const { btc, eth } = hydrateCoins();
+  console.log(btc, eth, '======');
 }
 
-aa()
-
+aa();
 
 const preferredChains = [
   arbitrum,
