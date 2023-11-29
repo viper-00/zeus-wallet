@@ -18,4 +18,3 @@ export const WC_PROJECT_ID = 'bf790b6b57570b99567abd1677b7415d'
 // error messages
 export const ERROR_MESSAGE = 'Oops, something went wrong!'
 export const SIGN_IN_REQUIRED = 'Login to continue'
-

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setAll } from 'lib/store/coin';
+import { coin, setCryptoCoins } from 'lib/store/coin';
 
 export class Coin {
   static async getCryptoPrice(): Promise<any> {
@@ -24,18 +24,33 @@ export class Coin {
       const response = await axios.get(url);
 
       if (response.data.resultData.data && response.data.resultData.data.length > 0) {
-        let btcPrice: any, ethPrice: any;
+        // let btcPrice: any, ethPrice: any;
+        let coins: coin[] = [];
         response.data.resultData.data.forEach((element: any) => {
-          if (element.symbol === 'BTC') {
-            btcPrice = element.quote.USD.price;
-          } else if (element.symbol === 'ETH') {
-            ethPrice = element.quote.USD.price;
-          }
+          // if (element.symbol === 'BTC') {
+          //   btcPrice = element.quote.USD.price;
+          // } else if (element.symbol === 'ETH') {
+          //   ethPrice = element.quote.USD.price;
+          // }
+
+          coins.push({
+            name: element.name,
+            symbol: element.symbol,
+            slug: element.slug,
+            last_updated: element.last_updated,
+            price: element.quote.USD.price,
+            volume_change_24h: element.quote.USD.volume_change_24h,
+            percent_change_1h: element.quote.USD.percent_change_1h,
+            percent_change_24h: element.quote.USD.percent_change_24h,
+            percent_change_7d: element.quote.USD.percent_change_7d,
+            percent_change_30d: element.quote.USD.percent_change_30d,
+            percent_change_60d: element.quote.USD.percent_change_60d,
+            percent_change_90d: element.quote.USD.percent_change_90d,
+          });
         });
 
-        setAll({
-          btc: btcPrice.toString(),
-          eth: ethPrice.toString(),
+        setCryptoCoins({
+          cryptoCoins: coins,
         });
       }
 

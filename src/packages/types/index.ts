@@ -14,6 +14,19 @@ export enum Chain {
   LTC = 11,
 }
 
+export const ChainIdToName: { [key in Chain]: string } = {
+  [Chain.ETH]: 'Ethereum',
+  [Chain.ETH_GOR]: 'Ethereum Testnet Goerli',
+  [Chain.ETH_OP]: 'OP Mainnet',
+  [Chain.POLYGON]: 'Polygon',
+  [Chain.ARBITRUM_ONE]: 'Arbitrum One',
+  [Chain.ARBITRUM_NOVA]: 'Arbitrum Nova',
+  [Chain.BTC]: 'Bitcoin',
+  [Chain.TRON]: 'Tron',
+  [Chain.BSC]: 'BNB Smart Chain',
+  [Chain.LTC]: 'Litecoin',
+};
+
 export enum TxStatus {
   Failed = 0,
   Success = 1,

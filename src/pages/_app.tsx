@@ -26,7 +26,7 @@ import type { AppProps } from 'next/app';
 import { InjectedConnector } from '@wagmi/connectors/injected';
 import { ETH } from 'packages/core/eth';
 import { Coin } from 'packages/api/coin';
-import { hydrateCoins, setAll } from 'lib/store/coin';
+import { getCryptoCoins } from 'lib/store/coin';
 
 async function aa() {
   // const result = await ETH.getTransactionDetail("0xdcd24233fec5e90c85a39faa8c8637e74538c7f9b456ab8884e012fd71c5789d")
@@ -34,8 +34,8 @@ async function aa() {
 
   await Coin.getOwnCryptoPrice();
 
-  const { btc, eth } = hydrateCoins();
-  console.log(btc, eth, '======');
+  const coins = getCryptoCoins();
+  console.log('======', coins);
 }
 
 aa();

@@ -12,6 +12,11 @@ import {
   SimpleGrid,
   Text,
 } from '@chakra-ui/react';
+import { getCryptoCoins } from 'lib/store/coin';
+import Image from 'next/image';
+import { TokenInfo, tokenList } from 'packages/constants/tokenList';
+import { Chain, ChainIdToName } from 'packages/types';
+import { useEffect, useState } from 'react';
 import { BsArrowDownLeftCircle, BsArrowUpRightCircle } from 'react-icons/bs';
 import { FiMinus } from 'react-icons/fi';
 import { GrAdd } from 'react-icons/gr';
@@ -19,6 +24,23 @@ import { MdOutlineSwapHoriz } from 'react-icons/md';
 import { TbBuildingBridge2 } from 'react-icons/tb';
 
 const WalletPage = () => {
+  const [coins, setCoins] = useState<TokenInfo[]>([]);
+
+  useEffect(() => {
+    const lists: TokenInfo[] = tokenList.filter((item) => item.chain === Chain.ETH);
+    const coinPrices = getCryptoCoins();
+    coinPrices.forEach((item) => {
+      lists.forEach((innerItem) => {
+        if (item.symbol === innerItem.symbol) {
+          innerItem.price = item.price;
+          innerItem.percentChange24h = item.percent_change_24h;
+          return;
+        }
+      });
+    });
+    setCoins(lists);
+  }, []);
+
   return (
     <>
       <Box paddingX={20}>
@@ -191,81 +213,33 @@ const WalletPage = () => {
               </Flex>
 
               <List mt={10}>
-                <ListItem px={5} py={5} backgroundColor={'#fbfbfb'}>
-                  <Flex justifyContent={'space-between'}>
-                    <Flex alignItems={'center'}>
-                      <BsArrowUpRightCircle size={30} />
-                      <Flex flexDirection={'column'} ml={5}>
-                        <Text>Matic Token</Text>
-                        <Text>MATIC</Text>
+                {coins &&
+                  coins.map((item, index) => (
+                    <ListItem px={5} py={5} backgroundColor={index % 2 === 0 ? '#fbfbfb' : 'fff'}>
+                      <Flex justifyContent={'space-between'}>
+                        <Flex alignItems={'center'}>
+                          <Image src={item.icon} alt="coin SVG" width={30} height={30} />
+                          <Flex flexDirection={'column'} ml={5}>
+                            <Text>{item.symbol}</Text>
+                            <Flex>
+                              <Text>{parseFloat(item.price as string).toFixed(item.displayDecimals)}</Text>
+
+                              <Text
+                                color={parseFloat(item.percentChange24h as string) > 0 ? 'green' : 'red'}
+                                marginLeft={2}
+                              >
+                                {parseFloat(item.percentChange24h as string).toFixed(2)}%
+                              </Text>
+                            </Flex>
+                          </Flex>
+                        </Flex>
+                        <Flex alignItems={'flex-end'} flexDirection={'column'}>
+                          <Text>$51.52</Text>
+                          <Text>51.53</Text>
+                        </Flex>
                       </Flex>
-                    </Flex>
-                    <Flex alignItems={'flex-end'} flexDirection={'column'}>
-                      <Text>$51.52</Text>
-                      <Text>51.53</Text>
-                    </Flex>
-                  </Flex>
-                </ListItem>
-                <ListItem px={5} py={5} backgroundColor={'#fff'}>
-                  <Flex justifyContent={'space-between'}>
-                    <Flex alignItems={'center'}>
-                      <BsArrowUpRightCircle size={30} />
-                      <Flex flexDirection={'column'} ml={5}>
-                        <Text>Matic Token</Text>
-                        <Text>MATIC</Text>
-                      </Flex>
-                    </Flex>
-                    <Flex alignItems={'flex-end'} flexDirection={'column'}>
-                      <Text>$51.52</Text>
-                      <Text>51.53</Text>
-                    </Flex>
-                  </Flex>
-                </ListItem>
-                <ListItem px={5} py={5} backgroundColor={'#fbfbfb'}>
-                  <Flex justifyContent={'space-between'}>
-                    <Flex alignItems={'center'}>
-                      <BsArrowUpRightCircle size={30} />
-                      <Flex flexDirection={'column'} ml={5}>
-                        <Text>Matic Token</Text>
-                        <Text>MATIC</Text>
-                      </Flex>
-                    </Flex>
-                    <Flex alignItems={'flex-end'} flexDirection={'column'}>
-                      <Text>$51.52</Text>
-                      <Text>51.53</Text>
-                    </Flex>
-                  </Flex>
-                </ListItem>
-                <ListItem px={5} py={5} backgroundColor={'#fff'}>
-                  <Flex justifyContent={'space-between'}>
-                    <Flex alignItems={'center'}>
-                      <BsArrowUpRightCircle size={30} />
-                      <Flex flexDirection={'column'} ml={5}>
-                        <Text>Matic Token</Text>
-                        <Text>MATIC</Text>
-                      </Flex>
-                    </Flex>
-                    <Flex alignItems={'flex-end'} flexDirection={'column'}>
-                      <Text>$51.52</Text>
-                      <Text>51.53</Text>
-                    </Flex>
-                  </Flex>
-                </ListItem>
-                <ListItem px={5} py={5} backgroundColor={'#fbfbfb'}>
-                  <Flex justifyContent={'space-between'}>
-                    <Flex alignItems={'center'}>
-                      <BsArrowUpRightCircle size={30} />
-                      <Flex flexDirection={'column'} ml={5}>
-                        <Text>Matic Token</Text>
-                        <Text>MATIC</Text>
-                      </Flex>
-                    </Flex>
-                    <Flex alignItems={'flex-end'} flexDirection={'column'}>
-                      <Text>$51.52</Text>
-                      <Text>51.53</Text>
-                    </Flex>
-                  </Flex>
-                </ListItem>
+                    </ListItem>
+                  ))}
               </List>
             </Card>
           </GridItem>

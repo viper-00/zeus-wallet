@@ -9,6 +9,8 @@ export type TokenInfo = {
   contractAddress?: string;
   displayDecimals: number;
   icon: any;
+  price?: string;
+  percentChange24h?: string;
 };
 
 export const tokenList: TokenInfo[] = [
@@ -38,24 +40,24 @@ export const tokenList: TokenInfo[] = [
     displayDecimals: 8,
     icon: require("../../assets/coin/usdc.png"),
   },
-  {
-    chain: Chain.ETH,
-    symbol: 'WBTC',
-    isToken: true,
-    contractAddress: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
-    decimals: 8,
-    displayDecimals: 8,
-    icon: require("../../assets/coin/wbtc.png"),
-  },
-  {
-    chain: Chain.ETH,
-    symbol: 'WETH',
-    isToken: true,
-    contractAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-    decimals: 18,
-    displayDecimals: 8,
-    icon: require("../../assets/coin/weth.png"),
-  },
+  // {
+  //   chain: Chain.ETH,
+  //   symbol: 'WBTC',
+  //   isToken: true,
+  //   contractAddress: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+  //   decimals: 8,
+  //   displayDecimals: 8,
+  //   icon: require("../../assets/coin/wbtc.png"),
+  // },
+  // {
+  //   chain: Chain.ETH,
+  //   symbol: 'WETH',
+  //   isToken: true,
+  //   contractAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+  //   decimals: 18,
+  //   displayDecimals: 8,
+  //   icon: require("../../assets/coin/weth.png"),
+  // },
   {
     chain: Chain.ETH,
     symbol: 'UNI',
