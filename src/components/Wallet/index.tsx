@@ -15,6 +15,8 @@ import {
 import { getCryptoCoins } from 'lib/store/coin';
 import Image from 'next/image';
 import { TokenInfo, tokenList } from 'packages/constants/tokenList';
+import { Web3 } from 'packages/core';
+import { ETH } from 'packages/core/eth';
 import { Chain, ChainIdToName } from 'packages/types';
 import { useEffect, useState } from 'react';
 import { BsArrowDownLeftCircle, BsArrowUpRightCircle } from 'react-icons/bs';
@@ -27,18 +29,27 @@ const WalletPage = () => {
   const [coins, setCoins] = useState<TokenInfo[]>([]);
 
   useEffect(() => {
-    const lists: TokenInfo[] = tokenList.filter((item) => item.chain === Chain.ETH);
-    const coinPrices = getCryptoCoins();
-    coinPrices.forEach((item) => {
-      lists.forEach((innerItem) => {
-        if (item.symbol === innerItem.symbol) {
-          innerItem.price = item.price;
-          innerItem.percentChange24h = item.percent_change_24h;
-          return;
-        }
+    async function init() {
+      const lists: TokenInfo[] = tokenList.filter((item) => item.chain === Chain.ETH);
+      const coinPrices = getCryptoCoins();
+      const assetBalances = await Web3.getAssetBalance(Chain.ETH, '0xFA31bFD5d106ef73f0eE4B71c57d9a0213025C99');
+
+      console.log('assetBalancesassetBalancesassetBalances', assetBalances);
+
+      coinPrices.forEach((item) => {
+        lists.forEach((innerItem) => {
+          if (item.symbol === innerItem.symbol) {
+            innerItem.price = item.price;
+            innerItem.percentChange24h = item.percent_change_24h;
+            innerItem.balance = assetBalances[item.symbol]
+            return;
+          }
+        });
       });
-    });
-    setCoins(lists);
+      setCoins(lists);
+    }
+
+    init();
   }, []);
 
   return (
@@ -220,7 +231,7 @@ const WalletPage = () => {
                         <Flex alignItems={'center'}>
                           <Image src={item.icon} alt="coin SVG" width={30} height={30} />
                           <Flex flexDirection={'column'} ml={5}>
-                            <Text>{item.symbol}</Text>
+                            <Text fontWeight={'bold'}>{item.symbol}</Text>
                             <Flex>
                               <Text>{parseFloat(item.price as string).toFixed(item.displayDecimals)}</Text>
 
@@ -234,8 +245,8 @@ const WalletPage = () => {
                           </Flex>
                         </Flex>
                         <Flex alignItems={'flex-end'} flexDirection={'column'}>
-                          <Text>$51.52</Text>
-                          <Text>51.53</Text>
+                          <Text fontWeight={'bold'}>${Number(item.price) * Number(item.balance)}</Text>
+                          <Text>{item.balance}</Text>
                         </Flex>
                       </Flex>
                     </ListItem>

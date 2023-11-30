@@ -69,3 +69,7 @@ export type FeeData = {
   maxFeePerGas: string;
   maxPriorityFeePerGas: string;
 };
+
+export type AssetBalance = {
+  [key: string]: string;
+};

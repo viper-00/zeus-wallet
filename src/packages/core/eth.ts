@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 import { tokenList } from 'packages/constants/tokenList';
 import { ERC20ABI } from 'packages/contracts/abi/ERC20';
-import { Chain, FeeData, TransactionDetail, TransactionTokenTransfer, TxStatus } from 'packages/types';
+import { AssetBalance, Chain, FeeData, TransactionDetail, TransactionTokenTransfer, TxStatus } from 'packages/types';
 import { GetRandomRPCUrl } from 'packages/utils';
 
 export class ETH {
@@ -17,7 +17,29 @@ export class ETH {
     return ethers.isAddress(address);
   }
 
-  static async getBalance(address: string, isWei?: boolean): Promise<number> {
+  static async getAssetBalance(address: string): Promise<AssetBalance> {
+    try {
+      let items: AssetBalance = {};
+
+      items.ETH = await this.getBalance(address);
+
+      const tokens = tokenList.filter((item) => item.chain === Chain.ETH && item.isToken);
+
+      const promises = tokens.map(async (token) => {
+        const balance = await this.getTokenBalance(address, token.contractAddress as string);
+        items[token.symbol] = balance;
+      });
+
+      await Promise.all(promises);
+
+      return items;
+    } catch (e) {
+      console.error(`${Chain[this.chain]} getAssetBalance error: ${e} | address: ${address}`);
+      throw e;
+    }
+  }
+
+  static async getBalance(address: string, isWei?: boolean): Promise<string> {
     const balance = await ETH.web3Instance.getBalance(address);
     return isWei ? balance : ethers.formatEther(balance);
   }
@@ -28,11 +50,11 @@ export class ETH {
     return decimals;
   }
 
-  static async getTokenBalance(address: string, contractAddress: string): Promise<number> {
+  static async getTokenBalance(address: string, contractAddress: string): Promise<string> {
     const contract = new ethers.Contract(contractAddress, ERC20ABI, ETH.web3Instance);
     const balance = await contract.balanceOf(address);
     const decimals = await this.getTokenDecimals(contractAddress);
-    return parseFloat(ethers.formatUnits(balance, decimals));
+    return ethers.formatUnits(balance, decimals);
   }
 
   static async getTransactionStatus(hash: string): Promise<string> {

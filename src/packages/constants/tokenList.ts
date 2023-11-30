@@ -11,6 +11,7 @@ export type TokenInfo = {
   icon: any;
   price?: string;
   percentChange24h?: string;
+  balance?: string;
 };
 
 export const tokenList: TokenInfo[] = [
@@ -39,6 +40,15 @@ export const tokenList: TokenInfo[] = [
     decimals: 6,
     displayDecimals: 8,
     icon: require("../../assets/coin/usdc.png"),
+  },
+  {
+    chain: Chain.ETH,
+    symbol: 'DAI',
+    isToken: true,
+    contractAddress: "0x6b175474e89094c44da98b954eedeac495271d0f",
+    decimals: 18,
+    displayDecimals: 18,
+    icon: require("../../assets/coin/dai.png"),
   },
   // {
   //   chain: Chain.ETH,
