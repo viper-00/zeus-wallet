@@ -1,17 +1,17 @@
 import Header from 'components/Common/Header';
 import SidebarWithHeader from 'components/Navigation/Sidebar';
-import WalletPage from '../Wallet';
+import TransactionsPage from '../TransactionsPage';
 
-const Portfolio = () => {
+const Transactions = () => {
   return (
     <>
-      <Header pageName="portfolio">
+      <Header pageName="transactions">
         <SidebarWithHeader>
-          <WalletPage />
+          <TransactionsPage />
         </SidebarWithHeader>
       </Header>
     </>
   );
 };
 
-export default Portfolio;
+export default Transactions;

@@ -27,15 +27,17 @@ import { InjectedConnector } from '@wagmi/connectors/injected';
 import { ETH } from 'packages/core/eth';
 import { Coin } from 'packages/api/coin';
 import { getCryptoCoins } from 'lib/store/coin';
+import { Web3 } from 'packages/core';
+import { Chain } from 'packages/types';
 
 async function aa() {
-  // const result = await ETH.getTransactionDetail("0xdcd24233fec5e90c85a39faa8c8637e74538c7f9b456ab8884e012fd71c5789d")
-  // console.log(result)
+  // const result = await Web3.getTransactionList(Chain.ETH, "0x79D9c06Bf20b7292F199872d4C4711206AdD1f1b")
+  // console.log(""result)
 
   await Coin.getOwnCryptoPrice();
 
-  const coins = getCryptoCoins();
-  console.log('======', coins);
+  // const coins = getCryptoCoins();
+  // console.log('======', coins);
 }
 
 aa();

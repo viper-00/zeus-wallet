@@ -3,6 +3,8 @@ import {
   Card,
   CardHeader,
   Checkbox,
+  CircularProgress,
+  CircularProgressLabel,
   Flex,
   Grid,
   GridItem,
@@ -24,29 +26,33 @@ import { FiMinus } from 'react-icons/fi';
 import { GrAdd } from 'react-icons/gr';
 import { MdOutlineSwapHoriz } from 'react-icons/md';
 import { TbBuildingBridge2 } from 'react-icons/tb';
+import { hydrateWallet } from 'lib/store/wallet';
 
 const WalletPage = () => {
   const [coins, setCoins] = useState<TokenInfo[]>([]);
+  const [totalUSDBalance, setTotalUSDBalance] = useState<number>(0);
 
   useEffect(() => {
     async function init() {
-      const lists: TokenInfo[] = tokenList.filter((item) => item.chain === Chain.ETH);
+      const wallet = hydrateWallet();
+      const lists: TokenInfo[] = tokenList.filter((item) => item.chain === wallet.chain);
       const coinPrices = getCryptoCoins();
-      const assetBalances = await Web3.getAssetBalance(Chain.ETH, '0xFA31bFD5d106ef73f0eE4B71c57d9a0213025C99');
+      const assetBalances = await Web3.getAssetBalance(wallet.chain, wallet.address);
 
-      console.log('assetBalancesassetBalancesassetBalances', assetBalances);
-
+      let usdBalance: number = 0;
       coinPrices.forEach((item) => {
         lists.forEach((innerItem) => {
           if (item.symbol === innerItem.symbol) {
             innerItem.price = item.price;
             innerItem.percentChange24h = item.percent_change_24h;
-            innerItem.balance = assetBalances[item.symbol]
+            innerItem.balance = assetBalances[item.symbol];
+            usdBalance += Number(item.price) * Number(assetBalances[item.symbol]);
             return;
           }
         });
       });
       setCoins(lists);
+      setTotalUSDBalance(usdBalance);
     }
 
     init();
@@ -58,7 +64,7 @@ const WalletPage = () => {
         <Flex justifyContent={'space-between'}>
           <Box>
             <Text fontSize="2xl">Total Balance</Text>
-            <Text fontSize="4xl">$32.01</Text>
+            <Text fontSize="4xl">${parseFloat(String(totalUSDBalance)).toFixed(2)}</Text>
           </Box>
           <Flex>
             <Flex alignItems={'center'} flexDirection={'column'}>
@@ -239,13 +245,19 @@ const WalletPage = () => {
                                 color={parseFloat(item.percentChange24h as string) > 0 ? 'green' : 'red'}
                                 marginLeft={2}
                               >
-                                {parseFloat(item.percentChange24h as string).toFixed(2)}%
+                                {parseFloat(item.percentChange24h as string) > 0 ? (
+                                  <>+{parseFloat(item.percentChange24h as string)}%</>
+                                ) : (
+                                  <>{parseFloat(item.percentChange24h as string)}%</>
+                                )}
                               </Text>
                             </Flex>
                           </Flex>
                         </Flex>
                         <Flex alignItems={'flex-end'} flexDirection={'column'}>
-                          <Text fontWeight={'bold'}>${Number(item.price) * Number(item.balance)}</Text>
+                          <Text fontWeight={'bold'}>
+                            ${(Number(item.price) * Number(item.balance)).toFixed(item.displayDecimals)}
+                          </Text>
                           <Text>{item.balance}</Text>
                         </Flex>
                       </Flex>
@@ -257,49 +269,38 @@ const WalletPage = () => {
 
           <GridItem colSpan={3}>
             <Card py={5}>
-              <Box alignItems={'center'} justifyContent={'space-between'} px={5}>
-                <Text>Token Allocation</Text>
-
-                <Flex alignItems={'center'} justifyContent={'space-between'} mt={10}>
-                  <Flex alignItems={'center'} ml={10}>
-                    <BsArrowUpRightCircle size={30} />
-                    <Text ml={2}>Tether USD</Text>
+              <Text pl={5} mb={10}>
+                Token Allocation
+              </Text>
+              {coins &&
+                coins.map((item, index) => (
+                  <Flex
+                    alignItems={'center'}
+                    justifyContent={'space-between'}
+                    backgroundColor={index % 2 === 0 ? '#fbfbfb' : 'fff'}
+                    py={5}
+                    px={5}
+                  >
+                    <Flex alignItems={'center'}>
+                      <Image src={item.icon} alt="coin SVG" width={30} height={30} />
+                      <Text ml={2}>{item.symbol}</Text>
+                    </Flex>
+                    <CircularProgress
+                      value={Number(
+                        (
+                          ((parseFloat(item.price as string) * parseFloat(item.balance as string)) / totalUSDBalance) *
+                          100
+                        ).toFixed(2),
+                      )}
+                      color="green.400"
+                      size={58}
+                    >
+                      <CircularProgressLabel>
+                        {(((Number(item.price) * Number(item.balance)) / totalUSDBalance) * 100).toFixed(2)}%
+                      </CircularProgressLabel>
+                    </CircularProgress>
                   </Flex>
-                  <Text>40%</Text>
-                </Flex>
-
-                <Flex alignItems={'center'} justifyContent={'space-between'} mt={10}>
-                  <Flex alignItems={'center'} ml={10}>
-                    <BsArrowUpRightCircle size={30} />
-                    <Text ml={2}>Tether USD</Text>
-                  </Flex>
-                  <Text>40%</Text>
-                </Flex>
-
-                <Flex alignItems={'center'} justifyContent={'space-between'} mt={10}>
-                  <Flex alignItems={'center'} ml={10}>
-                    <BsArrowUpRightCircle size={30} />
-                    <Text ml={2}>Tether USD</Text>
-                  </Flex>
-                  <Text>40%</Text>
-                </Flex>
-
-                <Flex alignItems={'center'} justifyContent={'space-between'} mt={10}>
-                  <Flex alignItems={'center'} ml={10}>
-                    <BsArrowUpRightCircle size={30} />
-                    <Text ml={2}>Tether USD</Text>
-                  </Flex>
-                  <Text>40%</Text>
-                </Flex>
-
-                <Flex alignItems={'center'} justifyContent={'space-between'} mt={10}>
-                  <Flex alignItems={'center'} ml={10}>
-                    <BsArrowUpRightCircle size={30} />
-                    <Text ml={2}>Tether USD</Text>
-                  </Flex>
-                  <Text>40%</Text>
-                </Flex>
-              </Box>
+                ))}
             </Card>
           </GridItem>
         </Grid>

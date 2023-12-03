@@ -14,6 +14,12 @@ export enum Chain {
   LTC = 11,
 }
 
+export enum WalletStatus {
+  ONLINE = 'Online',
+  OFFLINE = 'Offline',
+  UNKNOWN = 'unknown',
+}
+
 export const ChainIdToName: { [key in Chain]: string } = {
   [Chain.ETH]: 'Ethereum',
   [Chain.ETH_GOR]: 'Ethereum Testnet Goerli',
@@ -34,26 +40,26 @@ export enum TxStatus {
 }
 
 export type TransactionDetail = {
-  blockHash: string;
+  blockHash?: string;
   blockNumber: number;
   chainId: number;
 
-  blockTimestamp: number;
+  blockTimestamp?: number;
   hash: string;
   from: string;
   to: string;
-  status: string;
+  status?: string;
   value: string;
-  gasPrice: number;
-  gasLimit: number;
-  maxFeePerGas: number;
-  maxPriorityFeePerGas: number;
-  nonce: number;
-  type: number;
-  gasUsed: number;
-  isContract: boolean;
+  gasPrice?: number;
+  gasLimit?: number;
+  maxFeePerGas?: number;
+  maxPriorityFeePerGas?: number;
+  nonce?: number;
+  type?: number;
+  gasUsed?: number;
+  isContract?: boolean;
   url?: string;
-  fee: string;
+  fee?: string;
 };
 
 export type TransactionTokenTransfer = {

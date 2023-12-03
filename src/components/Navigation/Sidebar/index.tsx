@@ -22,7 +22,6 @@ import {
   FormControl,
   FormLabel,
   Switch,
-  Center,
   Stack,
   chakra,
   VisuallyHidden,
@@ -35,19 +34,21 @@ import { BsArrowDownLeftCircle, BsArrowUpRightCircle } from 'react-icons/bs';
 import { BiLogoMedium } from 'react-icons/bi';
 import { TbBuildingBridge2 } from 'react-icons/tb';
 import { MdOutlineSwapHoriz } from 'react-icons/md';
-import { RiNftFill, RiTwitterXFill } from 'react-icons/ri';
-import { GrTransaction, GrAdd } from 'react-icons/gr';
+import { RiNftFill, RiTwitterXFill, RiAddFill } from 'react-icons/ri';
 import { FaDiscord, FaRedditAlien } from 'react-icons/fa';
-import { AiFillYoutube, AiOutlineEye } from 'react-icons/ai';
+import { AiFillYoutube, AiOutlineEye, AiOutlineTransaction } from 'react-icons/ai';
 import { IconType } from 'react-icons';
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useEffect, useState } from 'react';
 import { chainList } from 'packages/constants/chainlist';
 import { getEllipsisTxt } from 'utils/format';
 import { useRouter } from 'next/router';
+import { hydrateWallet, resetWallet } from 'lib/store/wallet';
+import { Chain } from 'packages/types';
 
 interface LinkItemProps {
   name: string;
   icon: IconType;
+  link: string;
 }
 
 interface NavItemProps extends FlexProps {
@@ -64,23 +65,25 @@ interface SidebarProps extends BoxProps {
 }
 
 const OneLinkItems: Array<LinkItemProps> = [
-  { name: 'Portfolio', icon: FiHome },
-  { name: 'Card', icon: FiCreditCard },
-  { name: 'DeFi', icon: FiActivity },
-  { name: 'NFT', icon: RiNftFill },
-  { name: 'Transactions', icon: GrTransaction },
+  { name: 'Portfolio', icon: FiHome, link: '/portfolio' },
+  { name: 'Card', icon: FiCreditCard, link: '/card' },
+  { name: 'DeFi', icon: FiActivity, link: '/defi' },
+  { name: 'NFT', icon: RiNftFill, link: '/nft' },
+  { name: 'Transactions', icon: AiOutlineTransaction, link: '/transactions' },
 ];
 
 const TwoLinkItems: Array<LinkItemProps> = [
-  { name: 'Send', icon: BsArrowUpRightCircle },
-  { name: 'Receive', icon: BsArrowDownLeftCircle },
-  { name: 'Bridge', icon: TbBuildingBridge2 },
-  { name: 'Swap', icon: MdOutlineSwapHoriz },
-  { name: 'Buy', icon: GrAdd },
-  { name: 'Sell', icon: FiMinus },
+  { name: 'Send', icon: BsArrowUpRightCircle, link: '/send' },
+  { name: 'Receive', icon: BsArrowDownLeftCircle, link: '/receive' },
+  { name: 'Bridge', icon: TbBuildingBridge2, link: '/bridge' },
+  { name: 'Swap', icon: MdOutlineSwapHoriz, link: '/swap' },
+  { name: 'Buy', icon: RiAddFill, link: '/buy' },
+  { name: 'Sell', icon: FiMinus, link: '/sell' },
 ];
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
+  const router = useRouter();
+
   return (
     <Box
       transition="3s ease"
@@ -99,9 +102,17 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
 
-      {OneLinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
-          {link.name}
+      {OneLinkItems.map((item) => (
+        <NavItem
+          backgroundColor={router.pathname === item.link ? '#0bc5ea' : ''}
+          color={router.pathname === item.link ? 'white' : ''}
+          key={item.name}
+          icon={item.icon}
+          onClick={() => {
+            router.push(item.link);
+          }}
+        >
+          {item.name}
         </NavItem>
       ))}
 
@@ -126,9 +137,17 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <Text>Action</Text>
       </Flex>
 
-      {TwoLinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
-          {link.name}
+      {TwoLinkItems.map((item) => (
+        <NavItem
+          backgroundColor={router.pathname === item.link ? '#0bc5ea' : ''}
+          color={router.pathname === item.link ? 'white' : ''}
+          key={item.name}
+          icon={item.icon}
+          onClick={() => {
+            router.push(item.link);
+          }}
+        >
+          {item.name}
         </NavItem>
       ))}
 
@@ -223,9 +242,16 @@ const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
 };
 
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
-  const address = '0x7072579d5551Af8f77C960364923f305dEB1A521';
+  const [address, setAddress] = useState<string>('');
+  const [chain, setChain] = useState<Chain>();
 
   const router = useRouter();
+
+  useEffect(() => {
+    const wallet = hydrateWallet();
+    setAddress(wallet.address);
+    setChain(wallet.chain);
+  }, []);
 
   return (
     <Flex
@@ -253,8 +279,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
 
       <Box width={'100%'}>
         <Flex alignItems={'center'} width={400}>
-          <Select width={150} value={0} backgroundColor={'#fff'}>
-            <option value="0">All Networks</option>
+          <Select width={200} value={chain} backgroundColor={'#fff'}>
+            {/* <option value={}>All Networks</option> */}
             {chainList.map((item) => (
               <option key={item.chainId} value={item.chainId}>
                 {item.name}
@@ -319,7 +345,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             bg: '#fff',
           }}
           onClick={() => {
-            router.push("/")
+            resetWallet();
+            router.push('/');
           }}
         >
           Logout

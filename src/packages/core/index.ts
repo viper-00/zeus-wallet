@@ -23,10 +23,10 @@ export class Web3 {
     }
   }
 
-  static async getTransactionList(token: TokenInfo, address: string): Promise<any[]> {
-    switch (token.chain) {
+  static async getTransactionList(chain: Chain, address: string): Promise<any[]> {
+    switch (chain) {
       case Chain.ETH:
-        return [];
+        return await ETH.getAssetTransactions(address);
     }
     return [];
   }

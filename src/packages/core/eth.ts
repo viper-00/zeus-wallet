@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { ethers } from 'ethers';
 import { tokenList } from 'packages/constants/tokenList';
 import { ERC20ABI } from 'packages/contracts/abi/ERC20';
@@ -58,32 +59,61 @@ export class ETH {
   }
 
   static async getTransactionStatus(hash: string): Promise<string> {
-    const receipt = await ETH.web3Instance.waitForTransaction(hash);
-    return TxStatus[receipt.status];
+    try {
+      const receipt = await ETH.web3Instance.waitForTransaction(hash);
+      return TxStatus[receipt.status];
+    } catch (e) {
+      console.error(`${Chain[this.chain]} getTransactionStatus error: ${e} | hash: ${hash}`);
+      throw e;
+    }
   }
 
   static async getBlockTimestamp(blockHash: string): Promise<number> {
-    const block = await ETH.web3Instance.getBlock(blockHash);
-    if (block && block.timestamp) {
-      const timestamp = new Date(block.timestamp * 1000);
-      return timestamp.getTime();
+    try {
+      const block = await ETH.web3Instance.getBlock(blockHash);
+      if (block && block.timestamp) {
+        const timestamp = new Date(block.timestamp * 1000);
+        return timestamp.getTime();
+      }
+    } catch (e) {
+      console.error(`${Chain[this.chain]} getBlockTimestamp error: ${e} | blockHash: ${blockHash}`);
+      throw e;
     }
 
     return 0;
   }
 
   static async getBlockGasUsed(hash: string): Promise<number> {
-    const receipt = await ETH.web3Instance.waitForTransaction(hash);
-    return receipt.gasUsed;
+    try {
+      const receipt = await ETH.web3Instance.waitForTransaction(hash);
+      return receipt.gasUsed;
+    } catch (e) {
+      console.error(`${Chain[this.chain]} getBlockGasUsed error: ${e} | hash: ${hash}`);
+      throw e;
+    }
   }
 
   static async decodeTokenTransfer(hash: string): Promise<TransactionTokenTransfer> {
-    const transaction = await ETH.web3Instance.getTransaction(hash);
+    let transaction: any;
+    try {
+      transaction = await ETH.web3Instance.getTransaction(hash);
+    } catch (e) {
+      console.error(`${Chain[this.chain]} decodeTokenTransfer error: ${e} | hash: ${hash}`);
+      throw e;
+    }
 
     const tokenInfo = tokenList.find((item) => item.chain === this.chain && item.contractAddress === transaction.to);
 
     if (!tokenInfo) {
-      throw new Error('TokenInfo not found.');
+      // throw new Error('TokenInfo not found.');
+      // contract is not support right now.
+      return {
+        hash: transaction.hash,
+        from: transaction.from,
+        to: transaction.to,
+        asset: '',
+        value: transaction.value,
+      };
     }
 
     let to: string = transaction.to;
@@ -157,12 +187,17 @@ export class ETH {
   }
 
   static async getFeeData(): Promise<FeeData> {
-    const feeData = await ETH.web3Instance.getFeeData();
-    return {
-      gasPrice: feeData.gasPrice.toString(),
-      maxFeePerGas: feeData.maxFeePerGas.toString(),
-      maxPriorityFeePerGas: feeData.maxPriorityFeePerGas.toString(),
-    };
+    try {
+      const feeData = await ETH.web3Instance.getFeeData();
+      return {
+        gasPrice: feeData.gasPrice.toString(),
+        maxFeePerGas: feeData.maxFeePerGas.toString(),
+        maxPriorityFeePerGas: feeData.maxPriorityFeePerGas.toString(),
+      };
+    } catch (e) {
+      console.error(`${Chain[this.chain]} getFeeData error: ${e}`);
+      throw e;
+    }
   }
 
   static async getGasLimit(contractAddress: string): Promise<number> {
@@ -180,4 +215,55 @@ export class ETH {
   static async getFee(): Promise<any> {}
 
   static async sendTransaction(): Promise<any> {}
+
+  static async getAssetTransactions(address: string): Promise<TransactionDetail[]> {
+    try {
+      const apiKey = 'YAlZobalfJSKjWMz3UvAFd9iRfvIuB6I';
+      const url = `https://eth-mainnet.g.alchemy.com/v2/${apiKey}`;
+      const body = {
+        id: 1,
+        jsonrpc: '2.0',
+        method: 'alchemy_getAssetTransfers',
+        params: [
+          {
+            fromBlock: '0x0',
+            toBlock: 'latest',
+            withMetadata: false,
+            excludeZeroValue: true,
+            maxCount: '0x3e8',
+            fromAddress: address,
+            category: ['external', 'internal', 'erc20'],
+            order: 'desc',
+          },
+        ],
+      };
+      const response = await axios.post(url, body, {
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+        },
+      });
+
+      let txs: TransactionDetail[] = [];
+
+      if (response.data && response.data.result.transfers && response.data.result.transfers.length > 0) {
+        response.data.result.transfers.forEach(async (item: any) => {
+          // const tx = await this.getTransactionDetail(item.hash);
+          const tx: TransactionDetail = {
+            hash: item.hash,
+            from: item.from,
+            to: item.to,
+            value: item.value,
+            blockNumber: parseInt(item.blockNum),
+            chainId: this.chain,
+            url: 'https://etherscan.io/tx/' + item.hash,
+          };
+          txs.push(tx);
+        });
+      }
+      return txs;
+    } catch (e) {
+      throw e;
+    }
+  }
 }

@@ -56,7 +56,7 @@ export class Coin {
 
       return response;
     } catch (err) {
-      throw new Error('do not fetch crypto price: ' + err);
+      throw new Error('do not fetch own crypto price: ' + err);
     }
   }
 }

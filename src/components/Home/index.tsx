@@ -14,10 +14,45 @@ import {
 } from '@chakra-ui/react';
 import Header from 'components/Common/Header';
 import HomeNav from 'components/Common/HomeNav';
-import { useState } from 'react';
+import { Web3 } from 'packages/core';
+import { useEffect, useState } from 'react';
+import { hydrateWallet, setWalletAddress } from 'lib/store/wallet';
+import { Chain } from 'packages/types';
+import { useRouter } from 'next/router';
 
 const Home = () => {
-  const [inputVal, setInputVal] = useState();
+  const router = useRouter();
+
+  const [address, setAddress] = useState<string>();
+  const [inputVal, setInputVal] = useState<string>('');
+  const [chain, setChain] = useState<Chain>(Chain.ETH);
+
+  const wallet = hydrateWallet();
+
+  useEffect(() => {
+    setAddress(wallet.address);
+    setInputVal(wallet.address);
+    setChain(Chain.ETH);
+  }, []);
+
+  useEffect(() => {
+    async function init() {
+      if (await Web3.checkAddress(chain, wallet.address)) {
+        router.push('/portfolio');
+      }
+    }
+    init();
+  }, [wallet.address]);
+
+  const handleEnterKeyPress = async (e: any) => {
+    if (e.key === 'Enter') {
+      if (await Web3.checkAddress(chain, inputVal)) {
+        setAddress(inputVal);
+        setWalletAddress({ address: inputVal });
+        router.push('/portfolio');
+      }
+    }
+  };
   return (
     <Header pageName="Home">
       <Container minW={'100%'} backgroundColor={'#FFF2D5'}>
@@ -38,8 +73,11 @@ const Home = () => {
                 type="tel"
                 placeholder="Track any EVM or Cosmos address or ENS name"
                 value={inputVal}
-                onChange={() => {
-                  setInputVal(inputVal);
+                onChange={(e) => {
+                  setInputVal(e.target.value);
+                }}
+                onKeyPress={(e) => {
+                  handleEnterKeyPress(e);
                 }}
               />
               <InputRightElement>
