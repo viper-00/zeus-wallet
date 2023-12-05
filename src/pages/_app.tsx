@@ -34,7 +34,7 @@ async function aa() {
   // const result = await Web3.getTransactionList(Chain.ETH, "0x79D9c06Bf20b7292F199872d4C4711206AdD1f1b")
   // console.log(""result)
 
-  await Coin.getOwnCryptoPrice();
+  // await Coin.getOwnCryptoPrice();
 
   // const coins = getCryptoCoins();
   // console.log('======', coins);
