@@ -26,7 +26,7 @@ const ReceivePage = () => {
           mt={10}
         >
           <Text fontWeight={'bold'} textAlign={'center'}>
-            Use this address to send tokens from an exchange or a wallet to Board Wallet and this address works on the
+            Use this address to send tokens from an exchange or a wallet to Zeus Wallet and this address works on the
             following chains: Ethereum, Polygon, Binance Smart Chain, Avalanche, Fantom, Optimism, Arbitrum, Evmos,
             zkSync Era, Base, Polygon zkEVM, Aurora, Moonbeam, Moonriver
           </Text>

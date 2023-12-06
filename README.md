@@ -2,7 +2,7 @@
     <br/>
     <br/>
     <p>Crypto, Alert, Explore</p>
-    <a href="">board.xyz</a>
+    <a href="">zeuswallet.xyz</a>
 </div>
 <br>
 <div align="center">
@@ -11,7 +11,7 @@
 
 ## 📽️ About
 
-**Board** is a crypto wallet platform.
+**ZeusWallet** is a crypto wallet platform.
 
 ## 💪 Community
 
@@ -21,8 +21,8 @@ For a place to have open discussions on features, voice your ideas, or get help 
 
 | Name    | Link                     |
 | ------- | ------------------------ |
-| Mainnet | https://board.xyz         |
-| Testnet | https://testnet.board.xyz |
+| Mainnet | https://zeuswallet.xyz         |
+| Testnet | https://testnet.zeuswallet.xyz |
 
 ## Getting Started
 
@@ -46,4 +46,4 @@ We love contributors! Feel free to contribute to this project but please read th
 
 ## 📜 License
 
-Board codebase is open-sourced software licensed under the [MIT](LICENSE).
+Zeus Wallet codebase is open-sourced software licensed under the [MIT](LICENSE).

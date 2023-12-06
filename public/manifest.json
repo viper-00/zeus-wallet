@@ -1,7 +1,7 @@
 {
-  "id": "xyz.web3-board",
-  "name": "Board",
-  "short_name": "board",
+  "id": "xyz.zeus-wallet",
+  "name": "Zeus Wallet",
+  "short_name": "zeus",
   "start_url": "/",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",

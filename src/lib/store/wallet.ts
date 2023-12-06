@@ -61,7 +61,7 @@ export const useWalletPersistStore = create(
         }),
     }),
     {
-      name: 'board.wallet.store',
+      name: 'zeus.wallet.store',
     },
   ),
 );

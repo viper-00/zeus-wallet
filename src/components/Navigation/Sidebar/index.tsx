@@ -66,9 +66,9 @@ interface SidebarProps extends BoxProps {
 
 const OneLinkItems: Array<LinkItemProps> = [
   { name: 'Portfolio', icon: FiHome, link: '/portfolio' },
-  { name: 'Card', icon: FiCreditCard, link: '/card' },
-  { name: 'DeFi', icon: FiActivity, link: '/defi' },
-  { name: 'NFT', icon: RiNftFill, link: '/nft' },
+  // { name: 'Card', icon: FiCreditCard, link: '/card' },
+  // { name: 'DeFi', icon: FiActivity, link: '/defi' },
+  // { name: 'NFT', icon: RiNftFill, link: '/nft' },
   { name: 'Transactions', icon: AiOutlineTransaction, link: '/transactions' },
 ];
 
@@ -77,8 +77,8 @@ const TwoLinkItems: Array<LinkItemProps> = [
   { name: 'Receive', icon: BsArrowDownLeftCircle, link: '/receive' },
   { name: 'Bridge', icon: TbBuildingBridge2, link: '/bridge' },
   { name: 'Swap', icon: MdOutlineSwapHoriz, link: '/swap' },
-  { name: 'Buy', icon: RiAddFill, link: '/buy' },
-  { name: 'Sell', icon: FiMinus, link: '/sell' },
+  // { name: 'Buy', icon: RiAddFill, link: '/buy' },
+  // { name: 'Sell', icon: FiMinus, link: '/sell' },
 ];
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
@@ -95,91 +95,97 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       h="full"
       {...rest}
     >
-      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          Wallet
-        </Text>
-        <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
-      </Flex>
+      <Flex flexDirection={'column'} height={'100%'} justifyContent={'space-between'}>
+        <Flex flexDirection={'column'}>
+          <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
+            <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
+              Wallet
+            </Text>
+            <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
+          </Flex>
 
-      {OneLinkItems.map((item) => (
-        <NavItem
-          backgroundColor={router.pathname === item.link ? '#0bc5ea' : ''}
-          color={router.pathname === item.link ? 'white' : ''}
-          key={item.name}
-          icon={item.icon}
-          onClick={() => {
-            router.push(item.link);
-          }}
-        >
-          {item.name}
-        </NavItem>
-      ))}
+          {OneLinkItems.map((item) => (
+            <NavItem
+              backgroundColor={router.pathname === item.link ? '#0bc5ea' : ''}
+              color={router.pathname === item.link ? 'white' : ''}
+              key={item.name}
+              icon={item.icon}
+              onClick={() => {
+                router.push(item.link);
+              }}
+            >
+              {item.name}
+            </NavItem>
+          ))}
 
-      <Flex
-        h="20"
-        align={'center'}
-        _before={{
-          content: '""',
-          borderBottom: '1px solid',
-          borderColor: useColorModeValue('gray.200', 'gray.700'),
-          flexGrow: 1,
-          mr: 8,
-        }}
-        _after={{
-          content: '""',
-          borderBottom: '1px solid',
-          borderColor: useColorModeValue('gray.200', 'gray.700'),
-          flexGrow: 1,
-          ml: 8,
-        }}
-      >
-        <Text>Action</Text>
-      </Flex>
+          <Flex
+            h="20"
+            align={'center'}
+            _before={{
+              content: '""',
+              borderBottom: '1px solid',
+              borderColor: useColorModeValue('gray.200', 'gray.700'),
+              flexGrow: 1,
+              mr: 8,
+            }}
+            _after={{
+              content: '""',
+              borderBottom: '1px solid',
+              borderColor: useColorModeValue('gray.200', 'gray.700'),
+              flexGrow: 1,
+              ml: 8,
+            }}
+          >
+            <Text>Action</Text>
+          </Flex>
 
-      {TwoLinkItems.map((item) => (
-        <NavItem
-          backgroundColor={router.pathname === item.link ? '#0bc5ea' : ''}
-          color={router.pathname === item.link ? 'white' : ''}
-          key={item.name}
-          icon={item.icon}
-          onClick={() => {
-            router.push(item.link);
-          }}
-        >
-          {item.name}
-        </NavItem>
-      ))}
+          {TwoLinkItems.map((item) => (
+            <NavItem
+              backgroundColor={router.pathname === item.link ? '#0bc5ea' : ''}
+              color={router.pathname === item.link ? 'white' : ''}
+              key={item.name}
+              icon={item.icon}
+              onClick={() => {
+                router.push(item.link);
+              }}
+            >
+              {item.name}
+            </NavItem>
+          ))}
+        </Flex>
 
-      <Flex justifyContent={'center'} mt={10}>
-        <Box>
-          <FormControl display="flex" alignItems="center">
-            <Switch id="email-alerts" size="md" />
-            <FormLabel htmlFor="email-alerts" mb="0" ml={3}>
-              Light
-            </FormLabel>
-          </FormControl>
+        <Box mb={10}>
+          <Flex justifyContent={'center'} mt={10}>
+            <Box>
+              <FormControl display="flex" alignItems="center">
+                <Switch id="email-alerts" size="md" />
+                <FormLabel htmlFor="email-alerts" mb="0" ml={3}>
+                  Light
+                </FormLabel>
+              </FormControl>
+            </Box>
+          </Flex>
+
+          <Flex justifyContent={'center'} mt={5}>
+            <Stack direction={'row'} spacing={1}>
+              <SocialButton label={'Twitter'} href={'#'}>
+                <FaDiscord />
+              </SocialButton>
+              <SocialButton label={'YouTube'} href={'#'}>
+                <RiTwitterXFill />
+              </SocialButton>
+              <SocialButton label={'Instagram'} href={'#'}>
+                <FaRedditAlien />
+              </SocialButton>
+              <SocialButton label={'Instagram'} href={'#'}>
+                <BiLogoMedium />
+              </SocialButton>
+              <SocialButton label={'Instagram'} href={'#'}>
+                <AiFillYoutube />
+              </SocialButton>
+            </Stack>
+          </Flex>
         </Box>
-      </Flex>
-
-      <Flex justifyContent={'center'} mt={5}>
-        <Stack direction={'row'} spacing={1}>
-          <SocialButton label={'Twitter'} href={'#'}>
-            <FaDiscord />
-          </SocialButton>
-          <SocialButton label={'YouTube'} href={'#'}>
-            <RiTwitterXFill />
-          </SocialButton>
-          <SocialButton label={'Instagram'} href={'#'}>
-            <FaRedditAlien />
-          </SocialButton>
-          <SocialButton label={'Instagram'} href={'#'}>
-            <BiLogoMedium />
-          </SocialButton>
-          <SocialButton label={'Instagram'} href={'#'}>
-            <AiFillYoutube />
-          </SocialButton>
-        </Stack>
       </Flex>
     </Box>
   );

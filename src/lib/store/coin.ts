@@ -37,7 +37,7 @@ export const useCoinPersistStore = create(
       getCryptoCoins: () => get().cryptoCoins,
     }),
     {
-      name: 'board.coin.store',
+      name: 'zeus.coin.store',
     },
   ),
 );

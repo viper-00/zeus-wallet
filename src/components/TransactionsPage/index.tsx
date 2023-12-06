@@ -68,7 +68,7 @@ const TransactionsPage = () => {
                         <Tr>
                           <Td isNumeric>{item.blockNumber}</Td>
                           <Td>
-                            <Link href={item.url}>{getEllipsisTxt(item.hash)}</Link>
+                            <Link href={item.url || '#'}>{getEllipsisTxt(item.hash)}</Link>
                           </Td>
                           <Td>{item.from}</Td>
                           <Td>{item.to}</Td>
@@ -80,10 +80,40 @@ const TransactionsPage = () => {
               </TableContainer>
             </TabPanel>
             <TabPanel>
-              <p>two!</p>
+              <TableContainer>
+                <Table variant="simple">
+                  <Thead>
+                    <Tr>
+                      <Th>Block Number</Th>
+                      <Th>Hash</Th>
+                      <Th>From</Th>
+                      <Th>To</Th>
+                      <Th>Value</Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>
+                    {txs &&
+                      txs.map((item) => (
+                        <Tr>
+                          <Td isNumeric>{item.blockNumber}</Td>
+                          <Td>
+                            <Link href={item.url || '#'}>{getEllipsisTxt(item.hash)}</Link>
+                          </Td>
+                          <Td>{item.from}</Td>
+                          <Td>{item.to}</Td>
+                          <Td isNumeric>{item.value}</Td>
+                        </Tr>
+                      ))}
+                  </Tbody>
+                </Table>
+              </TableContainer>
             </TabPanel>
             <TabPanel>
-              <p>three!</p>
+              <TableContainer>
+                <Text fontWeight={'bold'} fontSize={20} textAlign={'center'} py={10}>
+                  No transaction found
+                </Text>
+              </TableContainer>
             </TabPanel>
           </TabPanels>
         </Tabs>

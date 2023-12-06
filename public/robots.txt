@@ -1,4 +1,4 @@
-Sitemap: https://board.xyz/sitemap.xml
+Sitemap: https://zeuswallet.xyz/sitemap.xml
 
 User-agent: *
 Allow: /*

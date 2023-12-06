@@ -19,7 +19,7 @@ Feel free to contact us if any issues.
 
 ## Report bugs
 
-We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/viper-00/web3-board/issues); it's that easy!
+We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/viper-00/zeus-wallet/issues); it's that easy!
 
 ## Write bug reports with detail, and background
 
