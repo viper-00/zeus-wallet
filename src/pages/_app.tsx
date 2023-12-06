@@ -30,17 +30,17 @@ import { getCryptoCoins } from 'lib/store/coin';
 import { Web3 } from 'packages/core';
 import { Chain } from 'packages/types';
 
-async function aa() {
+async function init() {
   // const result = await Web3.getTransactionList(Chain.ETH, "0x79D9c06Bf20b7292F199872d4C4711206AdD1f1b")
   // console.log(""result)
 
-  // await Coin.getOwnCryptoPrice();
+  await Coin.getOwnCryptoPrice();
 
   // const coins = getCryptoCoins();
   // console.log('======', coins);
 }
 
-aa();
+init();
 
 const preferredChains = [
   arbitrum,

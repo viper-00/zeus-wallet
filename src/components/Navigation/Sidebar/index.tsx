@@ -40,7 +40,7 @@ import { AiFillYoutube, AiOutlineEye, AiOutlineTransaction } from 'react-icons/a
 import { IconType } from 'react-icons';
 import { FC, ReactNode, useEffect, useState } from 'react';
 import { chainList } from 'packages/constants/chainlist';
-import { getEllipsisTxt } from 'utils/format';
+import { formatEllipsisTxt } from 'utils/format';
 import { useRouter } from 'next/router';
 import { hydrateWallet, resetWallet } from 'lib/store/wallet';
 import { Chain } from 'packages/types';
@@ -99,7 +99,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <Flex flexDirection={'column'}>
           <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
             <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-              Wallet
+              Zeus Wallet
             </Text>
             <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
           </Flex>
@@ -314,7 +314,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                   bg: '#fff',
                 }}
               >
-                {getEllipsisTxt(address)}
+                {formatEllipsisTxt(address)}
               </Button>
             </Tooltip>
           </Box>

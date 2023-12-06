@@ -22,7 +22,7 @@ import Link from 'next/link';
 import { Web3 } from 'packages/core';
 import { Chain, TransactionDetail } from 'packages/types';
 import { useEffect, useState } from 'react';
-import { getEllipsisTxt } from 'utils/format';
+import { formatEllipsisTxt } from 'utils/format';
 
 const TransactionsPage = () => {
   const [txs, setTxs] = useState<TransactionDetail[]>([]);
@@ -68,7 +68,7 @@ const TransactionsPage = () => {
                         <Tr>
                           <Td isNumeric>{item.blockNumber}</Td>
                           <Td>
-                            <Link href={item.url || '#'}>{getEllipsisTxt(item.hash)}</Link>
+                            <Link href={item.url || '#'}>{formatEllipsisTxt(item.hash)}</Link>
                           </Td>
                           <Td>{item.from}</Td>
                           <Td>{item.to}</Td>
@@ -97,7 +97,7 @@ const TransactionsPage = () => {
                         <Tr>
                           <Td isNumeric>{item.blockNumber}</Td>
                           <Td>
-                            <Link href={item.url || '#'}>{getEllipsisTxt(item.hash)}</Link>
+                            <Link href={item.url || '#'}>{formatEllipsisTxt(item.hash)}</Link>
                           </Td>
                           <Td>{item.from}</Td>
                           <Td>{item.to}</Td>

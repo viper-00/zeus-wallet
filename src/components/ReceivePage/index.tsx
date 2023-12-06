@@ -1,7 +1,8 @@
-import { Card, Flex, Text } from '@chakra-ui/react';
+import { Button, Card, Flex, Text } from '@chakra-ui/react';
 import { hydrateWallet } from 'lib/store/wallet';
 import { QRCodeSVG } from 'qrcode.react';
 import { useEffect, useState } from 'react';
+import { formatEllipsisTxt } from 'utils/format';
 
 const ReceivePage = () => {
   const [address, setAddress] = useState<string>('');
@@ -34,6 +35,25 @@ const ReceivePage = () => {
 
         <Flex mt={20}>
           <QRCodeSVG value={address} size={200} />
+        </Flex>
+
+        <Flex alignItems={'center'} mt={10}>
+          <Text fontWeight={'bold'} fontSize={20}>
+            {formatEllipsisTxt(address)}
+          </Text>
+          <Button
+            colorScheme="yellow"
+            ml={5}
+            onClick={async () => {
+              await navigator.clipboard.writeText(address);
+            }}
+          >
+            COPY
+          </Button>
+        </Flex>
+
+        <Flex mt={10}>
+          <Text>{address}</Text>
         </Flex>
       </Flex>
     </>

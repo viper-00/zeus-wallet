@@ -2,7 +2,7 @@ import { Avatar, Button, HStack, Text, useToast } from '@chakra-ui/react';
 import { useAccount, useConnect, useDisconnect, useSignMessage } from 'wagmi';
 import { InjectedConnector } from 'wagmi/connectors/injected';
 import { signIn, signOut, useSession } from 'next-auth/react';
-import { getEllipsisTxt } from 'utils/format';
+import { formatEllipsisTxt } from 'utils/format';
 
 const ConnectButton = () => {
   const { connectAsync } = useConnect({ connector: new InjectedConnector() });
@@ -39,7 +39,7 @@ const ConnectButton = () => {
     return (
       <HStack onClick={handleDisconnect} cursor={'pointer'}>
         <Avatar size="xs" />
-        {/* <Text fontWeight="medium">{getEllipsisTxt(data.user.address)}</Text> */}
+        {/* <Text fontWeight="medium">{formatEllipsisTxt(data.user.address)}</Text> */}
       </HStack>
     );
   }
