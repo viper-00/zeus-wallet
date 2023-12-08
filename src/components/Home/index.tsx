@@ -33,7 +33,7 @@ const Home = () => {
     setAddress(wallet.address);
     setInputVal(wallet.address);
     setChain(Chain.ETH);
-  }, []);
+  }, [wallet.address]);
 
   useEffect(() => {
     async function init() {
@@ -42,7 +42,7 @@ const Home = () => {
       }
     }
     init();
-  }, [wallet.address]);
+  }, [chain, wallet.address, router]);
 
   const handleEnterKeyPress = async (e: any) => {
     if (e.key === 'Enter') {

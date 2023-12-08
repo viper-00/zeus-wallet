@@ -232,7 +232,7 @@ const WalletPage = () => {
               <List mt={10}>
                 {coins &&
                   coins.map((item, index) => (
-                    <ListItem px={5} py={5} backgroundColor={index % 2 === 0 ? '#fbfbfb' : 'fff'}>
+                    <ListItem px={5} py={5} backgroundColor={index % 2 === 0 ? '#fbfbfb' : 'fff'} key={index}>
                       <Flex justifyContent={'space-between'}>
                         <Flex alignItems={'center'}>
                           <Image src={item.icon} alt="coin SVG" width={30} height={30} />
@@ -280,6 +280,7 @@ const WalletPage = () => {
                     backgroundColor={index % 2 === 0 ? '#fbfbfb' : 'fff'}
                     py={5}
                     px={5}
+                    key={index}
                   >
                     <Flex alignItems={'center'}>
                       <Image src={item.icon} alt="coin SVG" width={30} height={30} />

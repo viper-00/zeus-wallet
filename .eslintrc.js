@@ -1,7 +1,12 @@
 module.exports = {
-  extends: ['plugin:@next/next/recommended', 'plugin:cypress/recommended'],
-  ignorePatterns: ['**/build/**/*'],
+  env: {
+    es2022: true
+  },
+  extends: ['next', 'next/core-web-vitals'],
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module'
+  },
   rules: {
-    'no-console': 'off',
   },
 };

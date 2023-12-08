@@ -64,8 +64,8 @@ const TransactionsPage = () => {
                   </Thead>
                   <Tbody>
                     {txs &&
-                      txs.map((item) => (
-                        <Tr>
+                      txs.map((item, index) => (
+                        <Tr key={index}>
                           <Td isNumeric>{item.blockNumber}</Td>
                           <Td>
                             <Link href={item.url || '#'}>{formatEllipsisTxt(item.hash)}</Link>
@@ -93,8 +93,8 @@ const TransactionsPage = () => {
                   </Thead>
                   <Tbody>
                     {txs &&
-                      txs.map((item) => (
-                        <Tr>
+                      txs.map((item, index) => (
+                        <Tr key={index}>
                           <Td isNumeric>{item.blockNumber}</Td>
                           <Td>
                             <Link href={item.url || '#'}>{formatEllipsisTxt(item.hash)}</Link>
