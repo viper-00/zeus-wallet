@@ -1,7 +1,6 @@
 import {
   Box,
   Card,
-  CardHeader,
   Checkbox,
   CircularProgress,
   CircularProgressLabel,
@@ -13,13 +12,13 @@ import {
   ListItem,
   SimpleGrid,
   Text,
+  useColorMode,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { getCryptoCoins } from 'lib/store/coin';
 import Image from 'next/image';
 import { TokenInfo, tokenList } from 'packages/constants/tokenList';
 import { Web3 } from 'packages/core';
-import { ETH } from 'packages/core/eth';
-import { Chain, ChainIdToName } from 'packages/types';
 import { useEffect, useState } from 'react';
 import { BsArrowDownLeftCircle, BsArrowUpRightCircle } from 'react-icons/bs';
 import { FiMinus } from 'react-icons/fi';
@@ -27,10 +26,13 @@ import { GrAdd } from 'react-icons/gr';
 import { MdOutlineSwapHoriz } from 'react-icons/md';
 import { TbBuildingBridge2 } from 'react-icons/tb';
 import { hydrateWallet } from 'lib/store/wallet';
+import { useRouter } from 'next/router';
 
 const WalletPage = () => {
   const [coins, setCoins] = useState<TokenInfo[]>([]);
   const [totalUSDBalance, setTotalUSDBalance] = useState<number>(0);
+  const router = useRouter();
+  const { colorMode } = useColorMode();
 
   useEffect(() => {
     async function init() {
@@ -42,11 +44,11 @@ const WalletPage = () => {
       let usdBalance: number = 0;
       coinPrices.forEach((item) => {
         lists.forEach((innerItem) => {
-          if (item.symbol === innerItem.symbol) {
+          if (item.ids === innerItem.ids) {
             innerItem.price = item.price;
-            innerItem.percentChange24h = item.percent_change_24h;
-            innerItem.balance = assetBalances[item.symbol];
-            usdBalance += Number(item.price) * Number(assetBalances[item.symbol]);
+            innerItem.usd24hChange = item.usd24hChange;
+            innerItem.balance = assetBalances[innerItem.symbol];
+            usdBalance += Number(item.price) * Number(assetBalances[innerItem.symbol]);
             return;
           }
         });
@@ -72,7 +74,7 @@ const WalletPage = () => {
                 isRound={true}
                 aria-label=""
                 icon={<BsArrowUpRightCircle size={30} />}
-                bg={'#FFF2D5'}
+                bg={useColorModeValue('white', 'white')}
                 color={'#000'}
                 rounded={'full'}
                 _hover={{
@@ -83,6 +85,9 @@ const WalletPage = () => {
                 }}
                 width={51}
                 height={51}
+                onClick={() => {
+                  router.push('/sell');
+                }}
               />
               <Text>Send</Text>
             </Flex>
@@ -91,7 +96,7 @@ const WalletPage = () => {
                 isRound={true}
                 aria-label=""
                 icon={<BsArrowDownLeftCircle size={30} />}
-                bg={'#FFF2D5'}
+                bg={useColorModeValue('white', 'white')}
                 color={'#000'}
                 rounded={'full'}
                 _hover={{
@@ -102,6 +107,9 @@ const WalletPage = () => {
                 }}
                 width={51}
                 height={51}
+                onClick={() => {
+                  router.push('/receive');
+                }}
               />
               <Text>Receive</Text>
             </Flex>
@@ -110,7 +118,7 @@ const WalletPage = () => {
                 isRound={true}
                 aria-label=""
                 icon={<TbBuildingBridge2 size={30} />}
-                bg={'#FFF2D5'}
+                bg={useColorModeValue('white', 'white')}
                 color={'#000'}
                 rounded={'full'}
                 _hover={{
@@ -121,6 +129,9 @@ const WalletPage = () => {
                 }}
                 width={51}
                 height={51}
+                onClick={() => {
+                  router.push('/bridge');
+                }}
               />
               <Text>Bridge</Text>
             </Flex>
@@ -129,7 +140,7 @@ const WalletPage = () => {
                 isRound={true}
                 aria-label=""
                 icon={<MdOutlineSwapHoriz size={30} />}
-                bg={'#FFF2D5'}
+                bg={useColorModeValue('white', 'white')}
                 color={'#000'}
                 rounded={'full'}
                 _hover={{
@@ -140,15 +151,18 @@ const WalletPage = () => {
                 }}
                 width={51}
                 height={51}
+                onClick={() => {
+                  router.push('/swap');
+                }}
               />
               <Text>Swap</Text>
             </Flex>
-            <Flex alignItems={'center'} flexDirection={'column'} paddingLeft={5}>
+            {/* <Flex alignItems={'center'} flexDirection={'column'} paddingLeft={5}>
               <IconButton
                 isRound={true}
                 aria-label=""
                 icon={<GrAdd size={30} />}
-                bg={'#FFF2D5'}
+                bg={useColorModeValue('white', 'white')}
                 color={'#000'}
                 rounded={'full'}
                 _hover={{
@@ -159,6 +173,9 @@ const WalletPage = () => {
                 }}
                 width={51}
                 height={51}
+                onClick={() => {
+                  router.push('/buy');
+                }}
               />
               <Text>Buy</Text>
             </Flex>
@@ -167,7 +184,7 @@ const WalletPage = () => {
                 isRound={true}
                 aria-label=""
                 icon={<FiMinus size={30} />}
-                bg={'#FFF2D5'}
+                bg={useColorModeValue('white', 'white')}
                 color={'#000'}
                 rounded={'full'}
                 _hover={{
@@ -178,16 +195,18 @@ const WalletPage = () => {
                 }}
                 width={51}
                 height={51}
+                onClick={() => {
+                  router.push('/sell');
+                }}
               />
               <Text>Sell</Text>
-            </Flex>
+            </Flex> */}
           </Flex>
         </Flex>
-
         <Grid templateColumns="repeat(1, 1fr)" marginY={5}>
           <GridItem w="100%" h="1" bg="blue.500" />
         </Grid>
-
+        {/* 
         <SimpleGrid spacing={4} templateColumns="repeat(4, 4fr)">
           <Card padding={5}>
             <Flex alignItems={'center'} justifyContent={'space-between'}>
@@ -217,11 +236,10 @@ const WalletPage = () => {
             </Flex>
             <Text marginTop={4}>Total DeFi Rewards</Text>
           </Card>
-        </SimpleGrid>
-
+        </SimpleGrid> */}
         <Grid gap={5} templateColumns="repeat(5, 1fr)" mt={10}>
           <GridItem colSpan={2}>
-            <Card py={5}>
+            <Card py={5} backgroundColor={useColorModeValue('white', 'gray.900')}>
               <Flex alignItems={'center'} justifyContent={'space-between'} px={5}>
                 <Text>Coins</Text>
                 <Box>
@@ -232,7 +250,20 @@ const WalletPage = () => {
               <List mt={10}>
                 {coins &&
                   coins.map((item, index) => (
-                    <ListItem px={5} py={5} backgroundColor={index % 2 === 0 ? '#fbfbfb' : 'fff'} key={index}>
+                    <ListItem
+                      px={5}
+                      py={5}
+                      backgroundColor={
+                        index % 2 === 0
+                          ? colorMode === 'light'
+                            ? 'gray.50'
+                            : 'gray.800'
+                          : colorMode === 'light'
+                          ? '#fff'
+                          : 'gray.900'
+                      }
+                      key={index}
+                    >
                       <Flex justifyContent={'space-between'}>
                         <Flex alignItems={'center'}>
                           <Image src={item.icon} alt="coin SVG" width={30} height={30} />
@@ -242,13 +273,13 @@ const WalletPage = () => {
                               <Text>{parseFloat(item.price as string).toFixed(item.displayDecimals)}</Text>
 
                               <Text
-                                color={parseFloat(item.percentChange24h as string) > 0 ? 'green' : 'red'}
+                                color={parseFloat(item.usd24hChange as string) > 0 ? 'green' : 'red'}
                                 marginLeft={2}
                               >
-                                {parseFloat(item.percentChange24h as string) > 0 ? (
-                                  <>+{parseFloat(item.percentChange24h as string)}%</>
+                                {parseFloat(item.usd24hChange as string) > 0 ? (
+                                  <>+{parseFloat(item.usd24hChange as string)}%</>
                                 ) : (
-                                  <>{parseFloat(item.percentChange24h as string)}%</>
+                                  <>{parseFloat(item.usd24hChange as string)}%</>
                                 )}
                               </Text>
                             </Flex>
@@ -268,7 +299,7 @@ const WalletPage = () => {
           </GridItem>
 
           <GridItem colSpan={3}>
-            <Card py={5}>
+            <Card py={5} backgroundColor={useColorModeValue('white', 'gray.900')}>
               <Text pl={5} mb={10}>
                 Token Allocation
               </Text>
@@ -277,7 +308,15 @@ const WalletPage = () => {
                   <Flex
                     alignItems={'center'}
                     justifyContent={'space-between'}
-                    backgroundColor={index % 2 === 0 ? '#fbfbfb' : 'fff'}
+                    backgroundColor={
+                      index % 2 === 0
+                        ? colorMode === 'light'
+                          ? 'gray.50'
+                          : 'gray.800'
+                        : colorMode === 'light'
+                        ? 'white'
+                        : 'gray.900'
+                    }
                     py={5}
                     px={5}
                     key={index}
@@ -311,10 +350,3 @@ const WalletPage = () => {
 };
 
 export default WalletPage;
-
-// { name: 'Send', icon: BsArrowUpRightCircle },
-// { name: 'Receive', icon: BsArrowDownLeftCircle },
-// { name: 'Bridge', icon: TbBuildingBridge2 },
-// { name: 'Swap', icon: MdOutlineSwapHoriz },
-// { name: 'Buy', icon: GrAdd },
-// { name: 'Sell', icon: FiMinus },

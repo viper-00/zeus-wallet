@@ -11,6 +11,7 @@ import {
   Image,
   Box,
   InputRightElement,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import Header from 'components/Common/Header';
 import HomeNav from 'components/Common/HomeNav';
@@ -55,7 +56,7 @@ const Home = () => {
   };
   return (
     <Header pageName="Home">
-      <Container minW={'100%'} backgroundColor={'#FFF2D5'}>
+      <Container minW={'100%'} backgroundColor={useColorModeValue("orange.300", "gray.800")}>
         <HomeNav />
         <Container centerContent>
           <Heading marginBottom={6} lineHeight="tall">
@@ -64,9 +65,9 @@ const Home = () => {
           <Text>Buy, stake, swap or bridge with crypto card</Text>
 
           <Stack spacing={11} mt={10}>
-            <InputGroup backgroundColor={'#fff'}>
+            <InputGroup backgroundColor={useColorModeValue("white", "gray.900")}>
               <InputLeftElement pointerEvents="none">
-                <SearchIcon color="#000" />
+                <SearchIcon color={useColorModeValue("black", "white")} />
               </InputLeftElement>
               <Input
                 htmlSize={100}

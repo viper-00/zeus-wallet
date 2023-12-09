@@ -44,6 +44,7 @@ import { formatEllipsisTxt } from 'utils/format';
 import { useRouter } from 'next/router';
 import { hydrateWallet, resetWallet } from 'lib/store/wallet';
 import { Chain } from 'packages/types';
+import { useColorMode } from '@chakra-ui/react';
 
 interface LinkItemProps {
   name: string;
@@ -83,11 +84,12 @@ const TwoLinkItems: Array<LinkItemProps> = [
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   const router = useRouter();
+  const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <Box
       transition="3s ease"
-      bg={useColorModeValue('white', 'gray.900')}
+      bg={useColorModeValue('white', 'Gray.900')}
       borderRight="1px"
       borderRightColor={useColorModeValue('gray.200', 'gray.700')}
       w={{ base: 'full', md: 60 }}
@@ -106,6 +108,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 
           {OneLinkItems.map((item) => (
             <NavItem
+              marginBottom={1}
               backgroundColor={router.pathname === item.link ? '#0bc5ea' : ''}
               color={router.pathname === item.link ? 'white' : ''}
               key={item.name}
@@ -141,6 +144,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 
           {TwoLinkItems.map((item) => (
             <NavItem
+              marginBottom={1}
               backgroundColor={router.pathname === item.link ? '#0bc5ea' : ''}
               color={router.pathname === item.link ? 'white' : ''}
               key={item.name}
@@ -158,9 +162,14 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           <Flex justifyContent={'center'} mt={10}>
             <Box>
               <FormControl display="flex" alignItems="center">
-                <Switch id="email-alerts" size="md" />
-                <FormLabel htmlFor="email-alerts" mb="0" ml={3}>
-                  Light
+                <Switch
+                  id="mode-switch"
+                  size="md"
+                  isChecked={colorMode === 'light' ? false : true}
+                  onChange={toggleColorMode}
+                />
+                <FormLabel htmlFor="mode-switch" mb="0" ml={3}>
+                  {colorMode.toUpperCase()}
                 </FormLabel>
               </FormControl>
             </Box>
@@ -265,7 +274,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       px={{ base: 4, md: 4 }}
       height="20"
       alignItems="center"
-      bg={useColorModeValue('#f4f5fe', 'gray.900')}
+      bg={useColorModeValue('#f4f5fe', 'Gray.900')}
       borderBottomWidth="1px"
       borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
       justifyContent={{ base: 'space-between', md: 'flex-end' }}
@@ -285,7 +294,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
 
       <Box width={'100%'}>
         <Flex alignItems={'center'} width={400}>
-          <Select width={200} value={chain} backgroundColor={'#fff'}>
+          <Select width={200} value={chain} backgroundColor={useColorModeValue('White', 'Gray.900')}>
             {/* <option value={}>All Networks</option> */}
             {chainList.map((item) => (
               <option key={item.chainId} value={item.chainId}>
@@ -299,22 +308,22 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                 px={4}
                 fontSize={'sm'}
                 rounded={'full'}
-                bg={'#fff'}
-                color={'#000'}
-                boxShadow={'0px 1px 25px -5px rgb(255 255 255 / 48%), 0 3px 10px -5px rgb(182 182 182 / 43%)'}
+                bg={useColorModeValue('White', 'Gray.900')}
+                color={useColorModeValue('Gray.900', 'White')}
+                borderWidth={1}
                 leftIcon={<FiBell />}
                 rightIcon={<FiCopy />}
                 onClick={async () => {
                   await navigator.clipboard.writeText(address);
                 }}
                 _hover={{
-                  bg: '#fff',
+                  bg: useColorModeValue('White', 'Gray.900'),
                 }}
                 _focus={{
-                  bg: '#fff',
+                  bg: useColorModeValue('White', 'Gray.900'),
                 }}
               >
-                {formatEllipsisTxt(address)}
+                <Text color={useColorModeValue('Gray.900', 'White')}>{formatEllipsisTxt(address)}</Text>
               </Button>
             </Tooltip>
           </Box>
@@ -325,37 +334,37 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         <IconButton
           aria-label="Search database"
           icon={<AiOutlineEye />}
-          bg={'#fff'}
+          bg={useColorModeValue('White', 'Gray.900')}
           px={4}
           rounded={'full'}
-          boxShadow={'0px 1px 25px -5px rgb(255 255 255 / 48%), 0 3px 10px -5px rgb(182 182 182 / 43%)'}
+          borderWidth={1}
           _hover={{
-            bg: '#fff',
+            bg: useColorModeValue('White', 'Gray.900'),
           }}
           _focus={{
-            bg: '#fff',
+            bg: useColorModeValue('White', 'Gray.900'),
           }}
         />
         <Button
           px={4}
           fontSize={'sm'}
           rounded={'full'}
-          bg={'#fff'}
-          color={'#000'}
-          boxShadow={'0px 1px 25px -5px rgb(255 255 255 / 48%), 0 3px 10px -5px rgb(182 182 182 / 43%)'}
+          bg={useColorModeValue('White', 'Gray.900')}
+          color={useColorModeValue('Gray.900', 'White')}
+          borderWidth={1}
           leftIcon={<FiBell />}
           _hover={{
-            bg: '#fff',
+            bg: useColorModeValue('White', 'Gray.900'),
           }}
           _focus={{
-            bg: '#fff',
+            bg: useColorModeValue('White', 'Gray.900'),
           }}
           onClick={() => {
             resetWallet();
             router.push('/');
           }}
         >
-          Logout
+          <Text color={useColorModeValue('Gray.900', 'White')}>Logout</Text>
         </Button>
         {/* <Flex alignItems={'center'}>
           <Menu>
@@ -379,7 +388,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
               </HStack>
             </MenuButton>
             <MenuList
-              bg={useColorModeValue('white', 'gray.900')}
+              bg={useColorModeValue('white', 'Gray.900')}
               borderColor={useColorModeValue('gray.200', 'gray.700')}
             >
               <MenuItem>Profile</MenuItem>
@@ -399,7 +408,7 @@ const SidebarWithHeader: FC<{ children: ReactNode }> = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Box minH="100vh" bg={useColorModeValue('#fff', 'gray.900')}>
+      <Box minH="100vh" bg={useColorModeValue('White', 'Gray.900')}>
         <SidebarContent onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
         <Drawer
           isOpen={isOpen}

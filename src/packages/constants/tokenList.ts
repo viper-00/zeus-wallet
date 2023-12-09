@@ -10,8 +10,9 @@ export type TokenInfo = {
   displayDecimals: number;
   icon: any;
   price?: string;
-  percentChange24h?: string;
+  usd24hChange?: string;
   balance?: string;
+  ids: string;
 };
 
 export const tokenList: TokenInfo[] = [
@@ -22,6 +23,7 @@ export const tokenList: TokenInfo[] = [
     decimals: 18,
     displayDecimals: 8,
     icon: require('../../assets/coin/eth.png'),
+    ids: 'ethereum',
   },
   {
     chain: Chain.ETH,
@@ -31,6 +33,7 @@ export const tokenList: TokenInfo[] = [
     decimals: 6,
     displayDecimals: 4,
     icon: require('../../assets/coin/usdt.png'),
+    ids: 'tether',
   },
   {
     chain: Chain.ETH,
@@ -40,6 +43,7 @@ export const tokenList: TokenInfo[] = [
     decimals: 6,
     displayDecimals: 4,
     icon: require('../../assets/coin/usdc.png'),
+    ids: 'usd-coin',
   },
   {
     chain: Chain.ETH,
@@ -49,25 +53,28 @@ export const tokenList: TokenInfo[] = [
     decimals: 18,
     displayDecimals: 8,
     icon: require('../../assets/coin/dai.png'),
+    ids: 'dai',
   },
-  // {
-  //   chain: Chain.ETH,
-  //   symbol: 'WBTC',
-  //   isToken: true,
-  //   contractAddress: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
-  //   decimals: 8,
-  //   displayDecimals: 8,
-  //   icon: require("../../assets/coin/wbtc.png"),
-  // },
-  // {
-  //   chain: Chain.ETH,
-  //   symbol: 'WETH',
-  //   isToken: true,
-  //   contractAddress: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-  //   decimals: 18,
-  //   displayDecimals: 8,
-  //   icon: require("../../assets/coin/weth.png"),
-  // },
+  {
+    chain: Chain.ETH,
+    symbol: 'WBTC',
+    isToken: true,
+    contractAddress: '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599',
+    decimals: 8,
+    displayDecimals: 8,
+    icon: require('../../assets/coin/wbtc.png'),
+    ids: 'wrapped-bitcoin',
+  },
+  {
+    chain: Chain.ETH,
+    symbol: 'WETH',
+    isToken: true,
+    contractAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+    decimals: 18,
+    displayDecimals: 8,
+    icon: require('../../assets/coin/weth.png'),
+    ids: 'weth',
+  },
   {
     chain: Chain.ETH,
     symbol: 'UNI',
@@ -76,6 +83,7 @@ export const tokenList: TokenInfo[] = [
     decimals: 18,
     displayDecimals: 8,
     icon: require('../../assets/coin/uni.png'),
+    ids: 'uniswap',
   },
   {
     chain: Chain.ETH,
@@ -85,6 +93,7 @@ export const tokenList: TokenInfo[] = [
     decimals: 18,
     displayDecimals: 8,
     icon: require('../../assets/coin/arb.png'),
+    ids: 'arbitrum',
   },
   {
     chain: Chain.ETH,
@@ -94,6 +103,7 @@ export const tokenList: TokenInfo[] = [
     decimals: 18,
     displayDecimals: 8,
     icon: require('../../assets/coin/link.png'),
+    ids: 'chainlink',
   },
   {
     chain: Chain.ETH,
@@ -103,6 +113,7 @@ export const tokenList: TokenInfo[] = [
     decimals: 6,
     displayDecimals: 4,
     icon: require('../../assets/coin/trx.png'),
+    ids: 'tron',
   },
   {
     chain: Chain.ETH,
@@ -112,6 +123,7 @@ export const tokenList: TokenInfo[] = [
     decimals: 18,
     displayDecimals: 8,
     icon: require('../../assets/coin/bnb.png'),
+    ids: 'binancecoin',
   },
   {
     chain: Chain.ETH,
@@ -121,6 +133,7 @@ export const tokenList: TokenInfo[] = [
     decimals: 8,
     displayDecimals: 4,
     icon: require('../../assets/coin/cro.png'),
+    ids: 'crypto-com-chain',
   },
   {
     chain: Chain.ETH,
@@ -130,6 +143,7 @@ export const tokenList: TokenInfo[] = [
     decimals: 18,
     displayDecimals: 8,
     icon: require('../../assets/coin/sand.png'),
+    ids: 'the-sandbox',
   },
   {
     chain: Chain.ETH,
@@ -139,6 +153,7 @@ export const tokenList: TokenInfo[] = [
     decimals: 18,
     displayDecimals: 8,
     icon: require('../../assets/coin/shib.png'),
+    ids: 'shiba-inu',
   },
   {
     chain: Chain.ETH,
@@ -148,6 +163,7 @@ export const tokenList: TokenInfo[] = [
     decimals: 18,
     displayDecimals: 8,
     icon: require('../../assets/coin/matic.png'),
+    ids: 'matic-network',
   },
   {
     chain: Chain.BTC,
@@ -156,6 +172,7 @@ export const tokenList: TokenInfo[] = [
     decimals: 8,
     displayDecimals: 8,
     icon: require('../../assets/coin/btc.png'),
+    ids: 'bitcoin',
   },
   {
     chain: Chain.TRON,
@@ -164,6 +181,7 @@ export const tokenList: TokenInfo[] = [
     decimals: 6,
     displayDecimals: 6,
     icon: require('../../assets/coin/trx.png'),
+    ids: 'tron',
   },
   {
     chain: Chain.TRON,
@@ -172,6 +190,7 @@ export const tokenList: TokenInfo[] = [
     decimals: 6,
     displayDecimals: 4,
     icon: require('../../assets/coin/usdt.png'),
+    ids: 'tether',
   },
   {
     chain: Chain.TRON,
@@ -180,6 +199,7 @@ export const tokenList: TokenInfo[] = [
     decimals: 6,
     displayDecimals: 4,
     icon: require('../../assets/coin/usdc.png'),
+    ids: 'usd-coin',
   },
   {
     chain: Chain.BSC,
@@ -188,6 +208,7 @@ export const tokenList: TokenInfo[] = [
     decimals: 18,
     displayDecimals: 8,
     icon: require('../../assets/coin/bnb.png'),
+    ids: 'binancecoin',
   },
   {
     chain: Chain.BSC,
@@ -196,6 +217,7 @@ export const tokenList: TokenInfo[] = [
     decimals: 18,
     displayDecimals: 8,
     icon: require('../../assets/coin/usdt.png'),
+    ids: 'tether',
   },
   {
     chain: Chain.BSC,
@@ -204,6 +226,7 @@ export const tokenList: TokenInfo[] = [
     decimals: 18,
     displayDecimals: 8,
     icon: require('../../assets/coin/busd.png'),
+    ids: 'binance-usd',
   },
   {
     chain: Chain.LTC,
@@ -212,5 +235,6 @@ export const tokenList: TokenInfo[] = [
     decimals: 8,
     displayDecimals: 8,
     icon: require('../../assets/coin/ltc.png'),
+    ids: 'litecoin',
   },
 ];

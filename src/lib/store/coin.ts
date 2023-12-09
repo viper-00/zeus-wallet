@@ -2,18 +2,12 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 export type coin = {
-  name: string;
-  symbol: string;
-  slug: string;
-  last_updated: string;
+  ids: string;
   price: string;
-  volume_change_24h: string;
-  percent_change_1h: string;
-  percent_change_24h: string;
-  percent_change_7d: string;
-  percent_change_30d: string;
-  percent_change_60d: string;
-  percent_change_90d: string;
+  usdMarketCap: string;
+  usd24hVol: string;
+  usd24hChange: string;
+  lastUpdatedAt: number;
 };
 
 type Coins = {

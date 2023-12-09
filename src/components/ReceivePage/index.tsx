@@ -1,4 +1,4 @@
-import { Button, Card, Flex, Text } from '@chakra-ui/react';
+import { Button, Card, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 import { hydrateWallet } from 'lib/store/wallet';
 import { QRCodeSVG } from 'qrcode.react';
 import { useEffect, useState } from 'react';
@@ -23,7 +23,7 @@ const ReceivePage = () => {
           alignItems={'center'}
           justifyContent={'center'}
           padding={30}
-          backgroundColor={'#f2fafe'}
+          backgroundColor={useColorModeValue("blank", "gray.900")}
           mt={10}
         >
           <Text fontWeight={'bold'} textAlign={'center'}>
