@@ -86,7 +86,7 @@ const WalletPage = () => {
                 width={51}
                 height={51}
                 onClick={() => {
-                  router.push('/sell');
+                  router.push('/send');
                 }}
               />
               <Text>Send</Text>

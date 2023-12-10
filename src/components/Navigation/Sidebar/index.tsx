@@ -289,7 +289,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       />
 
       <Text display={{ base: 'flex', md: 'none' }} fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-        Logo
+        ZEUS WALLET
       </Text>
 
       <Box width={'100%'}>

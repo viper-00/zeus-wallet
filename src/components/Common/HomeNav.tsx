@@ -6,7 +6,7 @@ const HomeNav = () => {
     <Box borderBottomColor="chakra-border-color">
       <Container maxW="container.xl" pt={'40px'} pb={'40px'}>
         <Flex align="center" justify="space-between">
-          <Text>Logo</Text>
+          <Text fontSize={30} fontWeight={'bold'}>ZEUS WALLET</Text>
           {/* <NavBar /> */}
           <HStack gap={'10px'}>
             <ConnectButton />

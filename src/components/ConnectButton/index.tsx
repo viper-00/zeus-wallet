@@ -32,16 +32,16 @@ const ConnectButton = () => {
   };
 
   // if (data?.user) {
-  return (
-    <HStack onClick={handleDisconnect} cursor={'pointer'}>
-      <Avatar size="xs" />
-      {/* <Text fontWeight="medium">{formatEllipsisTxt(data.user.address)}</Text> */}
-    </HStack>
-  );
+  // return (
+  //   <HStack onClick={handleDisconnect} cursor={'pointer'}>
+  //     <Avatar size="xs" />
+  //     {/* <Text fontWeight="medium">{formatEllipsisTxt(data.user.address)}</Text> */}
+  //   </HStack>
+  // );
   // }
 
   return (
-    <Button size="sm" onClick={handleAuth} colorScheme="blue">
+    <Button size="lg" onClick={handleAuth} colorScheme="blue">
       Connect Wallet
     </Button>
   );

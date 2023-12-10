@@ -1,4 +1,4 @@
-import { CheckIcon, SearchIcon } from '@chakra-ui/icons';
+import { CheckIcon, CloseIcon, SearchIcon } from '@chakra-ui/icons';
 import {
   Heading,
   Container,
@@ -20,6 +20,7 @@ import { useEffect, useState } from 'react';
 import { hydrateWallet, setWalletAddress } from 'lib/store/wallet';
 import { Chain } from 'packages/types';
 import { useRouter } from 'next/router';
+import Footer from 'components/Footer';
 
 const Home = () => {
   const router = useRouter();
@@ -27,6 +28,7 @@ const Home = () => {
   const [address, setAddress] = useState<string>();
   const [inputVal, setInputVal] = useState<string>('');
   const [chain, setChain] = useState<Chain>(Chain.ETH);
+  const [checkStatus, setCheckStatus] = useState<boolean>();
 
   const wallet = hydrateWallet();
 
@@ -45,6 +47,17 @@ const Home = () => {
     init();
   }, [chain, wallet.address, router]);
 
+  useEffect(() => {
+    async function checkInputStatus() {
+      if (await Web3.checkAddress(chain, inputVal)) {
+        setCheckStatus(true);
+      } else {
+        setCheckStatus(false);
+      }
+    }
+    checkInputStatus();
+  }, [inputVal, chain]);
+
   const handleEnterKeyPress = async (e: any) => {
     if (e.key === 'Enter') {
       if (await Web3.checkAddress(chain, inputVal)) {
@@ -55,48 +68,61 @@ const Home = () => {
     }
   };
   return (
-    <Header pageName="Home">
-      <Container minW={'100%'} backgroundColor={useColorModeValue("orange.300", "gray.800")}>
-        <HomeNav />
-        <Container centerContent>
-          <Heading marginBottom={6} lineHeight="tall">
-            Explore all of Web3 in one place
-          </Heading>
-          <Text>Buy, stake, swap or bridge with crypto card</Text>
+    <Container minW={'100%'} backgroundColor={useColorModeValue('white', 'gray.800')}>
+      <HomeNav />
+      <Container centerContent>
+        <Heading marginBottom={6} lineHeight="tall" fontSize={30}>
+          Explore all of Web3 in one place
+        </Heading>
+        <Text fontSize={20}>Buy, stake, swap or bridge with crypto payment</Text>
 
-          <Stack spacing={11} mt={10}>
-            <InputGroup backgroundColor={useColorModeValue("white", "gray.900")}>
-              <InputLeftElement pointerEvents="none">
-                <SearchIcon color={useColorModeValue("black", "white")} />
-              </InputLeftElement>
-              <Input
-                htmlSize={100}
-                type="tel"
-                placeholder="Track any EVM or Cosmos address or ENS name"
-                value={inputVal}
-                onChange={(e) => {
-                  setInputVal(e.target.value);
-                }}
-                onKeyPress={(e) => {
-                  handleEnterKeyPress(e);
-                }}
-              />
-              <InputRightElement>
-                <CheckIcon color="green.500" />
-              </InputRightElement>
-            </InputGroup>
-          </Stack>
-          <Text mt={5}>Or</Text>
-          <Button colorScheme="blue" mt={5}>
-            Connect Wallet
-          </Button>
+        <Stack spacing={11} mt={10}>
+          <InputGroup backgroundColor={useColorModeValue('white', 'gray.900')}>
+            <InputLeftElement pointerEvents="none">
+              <SearchIcon color={useColorModeValue('black', 'white')} />
+            </InputLeftElement>
+            <Input
+              htmlSize={100}
+              type="tel"
+              placeholder="Track any EVM or Cosmos address or ENS name"
+              value={inputVal}
+              onChange={(e) => {
+                setInputVal(e.target.value);
+              }}
+              onKeyPress={(e) => {
+                handleEnterKeyPress(e);
+              }}
+            />
 
-          <Box width={1000} mt={20}>
-            <Image src="./test.svg" alt="Test SVG" />
-          </Box>
-        </Container>
+            {inputVal && (
+              <>
+                {checkStatus ? (
+                  <InputRightElement>
+                    <CheckIcon color="green.500" />
+                  </InputRightElement>
+                ) : (
+                  <InputRightElement>
+                    <CloseIcon color="red.500" />
+                  </InputRightElement>
+                )}
+              </>
+            )}
+          </InputGroup>
+        </Stack>
+        <Text mt={5}>Or</Text>
+        <Button colorScheme="blue" mt={5} size={'lg'}>
+          Connect Wallet
+        </Button>
+
+        <Box width={1000} mt={20}>
+          <Image src="./home.png" alt="Home Page" />
+        </Box>
       </Container>
-    </Header>
+
+      <Box mt={20}>
+        <Footer />
+      </Box>
+    </Container>
 
     // <VStack w={'full'}>
 
