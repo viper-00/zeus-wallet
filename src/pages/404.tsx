@@ -14,7 +14,9 @@ const Custom404 = () => {
             width={200}
             // alt={TAPE_APP_NAME}
           /> */}
-            <Image src="https://bit.ly/dan-abramov" alt="Dan Abramov" />
+            <Text fontSize={30} fontWeight="bold">
+              ZEUS WALLET
+            </Text>
           </Box>
           <Text className="text-4xl font-bold">404</Text>
           <Box className="mb-6">This page could not be found.</Box>

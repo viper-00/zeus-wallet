@@ -6,11 +6,12 @@ export type ChainListInfo = {
   shortName: string;
   chainId: number;
   networkId: number;
+  icon: any;
 };
 
 export const chainList: ChainListInfo[] = [
   {
-    name: 'Ethereum Mainnet',
+    name: 'Ethereum',
     chain: 'ETH',
     rpc: [
       // 'https://cloudflare-eth.com',
@@ -19,12 +20,13 @@ export const chainList: ChainListInfo[] = [
       // 'https://rpc.mevblocker.io/fast',
       // 'https://rpc.mevblocker.io/noreverts',
       // 'https://rpc.mevblocker.io/fullprivacy',
-      "https://eth-mainnet.g.alchemy.com/v2/YAlZobalfJSKjWMz3UvAFd9iRfvIuB6I"
+      'https://eth-mainnet.g.alchemy.com/v2/YAlZobalfJSKjWMz3UvAFd9iRfvIuB6I',
     ],
     infoURL: 'https://ethereum.org',
     shortName: 'eth',
     chainId: 1,
     networkId: 1,
+    icon: require('../../assets/chain/eth.png'),
   },
   // {
   //   name: 'Ethereum Testnet Goerli',
@@ -42,7 +44,7 @@ export const chainList: ChainListInfo[] = [
   //   networkId: 5,
   // },
   {
-    name: 'OP Mainnet',
+    name: 'Optimism',
     chain: 'ETH',
     rpc: [
       'https://mainnet.optimism.io',
@@ -55,9 +57,10 @@ export const chainList: ChainListInfo[] = [
     shortName: 'oeth',
     chainId: 10,
     networkId: 10,
+    icon: require('../../assets/chain/op.png'),
   },
   {
-    name: 'Polygon Mainnet',
+    name: 'Polygon',
     chain: 'Polygon',
     rpc: [
       'https://polygon-rpc.com/',
@@ -75,6 +78,7 @@ export const chainList: ChainListInfo[] = [
     shortName: 'matic',
     chainId: 137,
     networkId: 137,
+    icon: require('../../assets/chain/matic.png'),
   },
   {
     name: 'Arbitrum One',
@@ -82,12 +86,9 @@ export const chainList: ChainListInfo[] = [
     shortName: 'arb1',
     chain: 'ETH',
     networkId: 42161,
-    rpc: [
-      'https://arb1.arbitrum.io/rpc',
-      'https://arbitrum-one.publicnode.com',
-      'wss://arbitrum-one.publicnode.com',
-    ],
+    rpc: ['https://arb1.arbitrum.io/rpc', 'https://arbitrum-one.publicnode.com', 'wss://arbitrum-one.publicnode.com'],
     infoURL: 'https://arbitrum.io',
+    icon: require('../../assets/chain/arb.png'),
   },
   {
     name: 'Arbitrum Nova',
@@ -97,5 +98,6 @@ export const chainList: ChainListInfo[] = [
     networkId: 42170,
     rpc: ['https://nova.arbitrum.io/rpc', 'https://arbitrum-nova.publicnode.com', 'wss://arbitrum-nova.publicnode.com'],
     infoURL: 'https://arbitrum.io',
+    icon: require('../../assets/chain/arb_nova.png'),
   },
 ];

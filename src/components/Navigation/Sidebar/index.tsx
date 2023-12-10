@@ -39,12 +39,14 @@ import { FaDiscord, FaRedditAlien } from 'react-icons/fa';
 import { AiFillYoutube, AiOutlineEye, AiOutlineTransaction } from 'react-icons/ai';
 import { IconType } from 'react-icons';
 import { FC, ReactNode, useEffect, useState } from 'react';
-import { chainList } from 'packages/constants/chainlist';
+import { chainList, ChainListInfo } from 'packages/constants/chainlist';
 import { formatEllipsisTxt } from 'utils/format';
 import { useRouter } from 'next/router';
 import { hydrateWallet, resetWallet } from 'lib/store/wallet';
 import { Chain } from 'packages/types';
 import { useColorMode } from '@chakra-ui/react';
+import { ChevronDownIcon } from '@chakra-ui/icons';
+import Image from 'next/image';
 
 interface LinkItemProps {
   name: string;
@@ -259,6 +261,7 @@ const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
   const [address, setAddress] = useState<string>('');
   const [chain, setChain] = useState<Chain>();
+  const [chainInfo, setChainInfo] = useState<ChainListInfo>();
 
   const router = useRouter();
 
@@ -266,6 +269,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
     const wallet = hydrateWallet();
     setAddress(wallet.address);
     setChain(wallet.chain);
+
+    setChainInfo(chainList.find((item) => item.chainId === wallet.chain));
   }, []);
 
   return (
@@ -294,14 +299,29 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
 
       <Box width={'100%'}>
         <Flex alignItems={'center'} width={400}>
-          <Select width={200} value={chain} backgroundColor={useColorModeValue('White', 'Gray.900')}>
-            {/* <option value={}>All Networks</option> */}
-            {chainList.map((item) => (
-              <option key={item.chainId} value={item.chainId}>
-                {item.name}
-              </option>
-            ))}
-          </Select>
+          <Box borderWidth={1}>
+            <Menu>
+              <MenuButton
+                as={Button}
+                rightIcon={<ChevronDownIcon />}
+                backgroundColor={useColorModeValue('white', 'gray.900')}
+              >
+                <Flex alignItems={'center'}>
+                  {chainInfo?.icon && <Image src={chainInfo?.icon} alt={'chain icon'} width={20} height={20} />}
+                  <Text ml={2}>{chainInfo?.name}</Text>
+                </Flex>
+              </MenuButton>
+              <MenuList borderWidth={1}>
+                {chainList.map((item) => (
+                  <MenuItem minH="48px" key={item.chainId} value={item.chainId}>
+                    <Image src={item.icon} alt={'chain icon'} width={30} height={30} />
+                    <Text ml={2}>{item.name}</Text>
+                  </MenuItem>
+                ))}
+              </MenuList>
+            </Menu>
+          </Box>
+
           <Box ml={4}>
             <Tooltip label="Copy">
               <Button
