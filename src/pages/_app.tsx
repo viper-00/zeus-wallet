@@ -29,42 +29,45 @@ import { Web3 } from 'packages/core';
 import { Chain } from 'packages/types';
 import { useEffect } from 'react';
 import { tokenList } from 'packages/constants/tokenList';
+import dynamic from 'next/dynamic';
 
-async function init() {
-  // const result = await Web3.getTransactionList(Chain.ETH, "0x79D9c06Bf20b7292F199872d4C4711206AdD1f1b")
-  // console.log(""result)
-}
+const Web3Provider = dynamic(() => import('components/Common/Providers/Web3Provider'));
 
-init();
+// async function init() {
+//   // const result = await Web3.getTransactionList(Chain.ETH, "0x79D9c06Bf20b7292F199872d4C4711206AdD1f1b")
+//   // console.log(""result)
+// }
 
-const preferredChains = [
-  arbitrum,
-  arbitrumGoerli,
-  avalanche,
-  avalancheFuji,
-  bsc,
-  bscTestnet,
-  fantom,
-  fantomTestnet,
-  foundry,
-  goerli,
-  mainnet,
-  optimism,
-  optimismGoerli,
-  polygon,
-  polygonMumbai,
-  sepolia,
-];
+// init();
 
-const { chains, publicClient } = configureChains(preferredChains, [publicProvider()]);
+// const preferredChains = [
+//   arbitrum,
+//   arbitrumGoerli,
+//   avalanche,
+//   avalancheFuji,
+//   bsc,
+//   bscTestnet,
+//   fantom,
+//   fantomTestnet,
+//   foundry,
+//   goerli,
+//   mainnet,
+//   optimism,
+//   optimismGoerli,
+//   polygon,
+//   polygonMumbai,
+//   sepolia,
+// ];
 
-const connectors: any = [new InjectedConnector({ chains, options: { shimDisconnect: true } })];
+// const { chains, publicClient } = configureChains(preferredChains, [publicProvider()]);
 
-const client = createConfig({
-  autoConnect: true,
-  connectors,
-  publicClient,
-});
+// const connectors: any = [new InjectedConnector({ chains, options: { shimDisconnect: true } })];
+
+// const client = createConfig({
+//   autoConnect: true,
+//   connectors,
+//   publicClient,
+// });
 
 const config = {
   initialColorMode: 'light',
@@ -86,13 +89,15 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   }, []);
 
   return (
-    <ChakraProvider resetCSS theme={theme}>
-      <WagmiConfig config={client}>
+    <Web3Provider>
+      <ChakraProvider resetCSS theme={theme}>
+        {/* <WagmiConfig config={client}> */}
         {/* <SessionProvider session={pageProps.session} refetchInterval={0}> */}
         <Component {...pageProps} />
         {/* </SessionProvider> */}
-      </WagmiConfig>
-    </ChakraProvider>
+        {/* </WagmiConfig> */}
+      </ChakraProvider>
+    </Web3Provider>
   );
 };
 

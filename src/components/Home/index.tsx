@@ -21,6 +21,7 @@ import { hydrateWallet, setWalletAddress } from 'lib/store/wallet';
 import { Chain } from 'packages/types';
 import { useRouter } from 'next/router';
 import Footer from 'components/Footer';
+import ConnectButton from 'components/ConnectButton';
 
 const Home = () => {
   const router = useRouter();
@@ -110,9 +111,10 @@ const Home = () => {
           </InputGroup>
         </Stack>
         <Text mt={5}>Or</Text>
-        <Button colorScheme="blue" mt={5} size={'lg'}>
-          Connect Wallet
-        </Button>
+
+        <Box mt={5}>
+          <ConnectButton />
+        </Box>
 
         <Box width={1000} mt={20}>
           <Image src="./home.png" alt="Home Page" />

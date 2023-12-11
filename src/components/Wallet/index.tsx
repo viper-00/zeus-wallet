@@ -325,20 +325,24 @@ const WalletPage = () => {
                       <Image src={item.icon} alt="coin SVG" width={30} height={30} />
                       <Text ml={2}>{item.symbol}</Text>
                     </Flex>
-                    <CircularProgress
-                      value={Number(
-                        (
-                          ((parseFloat(item.price as string) * parseFloat(item.balance as string)) / totalUSDBalance) *
-                          100
-                        ).toFixed(2),
-                      )}
-                      color="green.400"
-                      size={58}
-                    >
-                      <CircularProgressLabel>
-                        {(((Number(item.price) * Number(item.balance)) / totalUSDBalance) * 100).toFixed(2)}%
-                      </CircularProgressLabel>
-                    </CircularProgress>
+                    <Box width={50}>
+                      <CircularProgress
+                        value={Number(
+                          (
+                            ((parseFloat(item.price as string) * parseFloat(item.balance as string)) /
+                              totalUSDBalance) *
+                            100
+                          ).toFixed(2),
+                        )}
+                        color="green.400"
+                      >
+                        <CircularProgressLabel>
+                          <Text fontWeight={'bold'} fontSize={8}>
+                            {(((Number(item.price) * Number(item.balance)) / totalUSDBalance) * 100).toFixed(2)}%
+                          </Text>
+                        </CircularProgressLabel>
+                      </CircularProgress>
+                    </Box>
                   </Flex>
                 ))}
             </Card>

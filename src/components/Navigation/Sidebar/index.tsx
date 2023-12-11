@@ -35,7 +35,7 @@ import { BiLogoMedium } from 'react-icons/bi';
 import { TbBuildingBridge2 } from 'react-icons/tb';
 import { MdOutlineSwapHoriz } from 'react-icons/md';
 import { RiNftFill, RiTwitterXFill, RiAddFill } from 'react-icons/ri';
-import { FaDiscord, FaRedditAlien } from 'react-icons/fa';
+import { FaDiscord, FaRedditAlien, FaTelegramPlane } from 'react-icons/fa';
 import { AiFillYoutube, AiOutlineEye, AiOutlineTransaction } from 'react-icons/ai';
 import { IconType } from 'react-icons';
 import { FC, ReactNode, useEffect, useState } from 'react';
@@ -178,21 +178,15 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           </Flex>
 
           <Flex justifyContent={'center'} mt={5}>
-            <Stack direction={'row'} spacing={1}>
-              <SocialButton label={'Twitter'} href={'#'}>
+            <Stack direction={'row'} spacing={6}>
+              <SocialButton label={'Discord'} href={'#'}>
                 <FaDiscord />
               </SocialButton>
-              <SocialButton label={'YouTube'} href={'#'}>
+              <SocialButton label={'Twitter'} href={'#'}>
                 <RiTwitterXFill />
               </SocialButton>
-              <SocialButton label={'Instagram'} href={'#'}>
-                <FaRedditAlien />
-              </SocialButton>
-              <SocialButton label={'Instagram'} href={'#'}>
-                <BiLogoMedium />
-              </SocialButton>
-              <SocialButton label={'Instagram'} href={'#'}>
-                <AiFillYoutube />
+              <SocialButton label={'Telegram'} href={'#'}>
+                <FaTelegramPlane />
               </SocialButton>
             </Stack>
           </Flex>
