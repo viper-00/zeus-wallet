@@ -5,6 +5,7 @@ const nextConfig = {
   images: {
     domains: ["raw.githubusercontent.com"],
   },
+  transpilePackages: ['@uniswap/widgets', '@uniswap/conedison'],
 };
 
 module.exports = nextConfig;

@@ -18,6 +18,7 @@
     "@chakra-ui/react": "^2.8.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@uniswap/conedison": "^1.8.0",
     "@uniswap/widgets": "^2.59.0",
     "@web3-react/walletconnect": "^8.2.3",
     "@web3uikit/core": "^1.1.5",

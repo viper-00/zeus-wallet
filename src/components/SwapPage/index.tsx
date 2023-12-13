@@ -1,10 +1,12 @@
 import { Box, Center, Flex, Text } from '@chakra-ui/react';
-import { SupportedLocale, SUPPORTED_LOCALES, SwapWidget, lightTheme, darkTheme } from '@uniswap/widgets';
+import { SupportedLocale, SUPPORTED_LOCALES, lightTheme, darkTheme } from '@uniswap/widgets';
+
 import { Chain } from 'packages/types';
 import { GetRandomRPCUrl } from 'packages/utils';
 import { useCallback, useRef, useState } from 'react';
 import { useActiveProvider } from './connectors';
 import { useColorMode } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
 
 const SwapPage = () => {
   const { colorMode } = useColorMode();
@@ -19,9 +21,17 @@ const SwapPage = () => {
 
   const provider = useActiveProvider();
 
+  const SwapWidget = dynamic(
+    async () => {
+      const res = await import('@uniswap/widgets');
+      return res.SwapWidget;
+    },
+    { ssr: false },
+  );
+
   return (
     <>
-      <Center  flexDirection={'column'} mt={10}>
+      <Center flexDirection={'column'} mt={10}>
         <Text fontWeight={'bold'} fontSize={20}>
           Swap
         </Text>
