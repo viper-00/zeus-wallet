@@ -1,37 +1,9 @@
-import { ChakraProvider } from '@chakra-ui/react';
-import { createConfig, WagmiConfig } from 'wagmi';
-import { configureChains } from '@wagmi/core';
-import {
-  arbitrum,
-  arbitrumGoerli,
-  avalanche,
-  avalancheFuji,
-  bsc,
-  bscTestnet,
-  fantom,
-  fantomTestnet,
-  foundry,
-  goerli,
-  mainnet,
-  optimism,
-  optimismGoerli,
-  polygon,
-  polygonMumbai,
-  sepolia,
-} from '@wagmi/core/chains';
-import { extendTheme } from '@chakra-ui/react';
-import { publicProvider } from 'wagmi/providers/public';
 import type { AppProps } from 'next/app';
-import { InjectedConnector } from '@wagmi/connectors/injected';
-import { ETH } from 'packages/core/eth';
-import { getCryptoCoins } from 'lib/store/coin';
 import { Web3 } from 'packages/core';
-import { Chain } from 'packages/types';
 import { useEffect } from 'react';
 import { tokenList } from 'packages/constants/tokenList';
-import dynamic from 'next/dynamic';
-
-const Web3Provider = dynamic(() => import('components/Common/Providers/Web3Provider'));
+import Providers from 'components/Common/Providers';
+import { walletFont } from 'packages/font';
 
 // async function init() {
 //   // const result = await Web3.getTransactionList(Chain.ETH, "0x79D9c06Bf20b7292F199872d4C4711206AdD1f1b")
@@ -69,13 +41,6 @@ const Web3Provider = dynamic(() => import('components/Common/Providers/Web3Provi
 //   publicClient,
 // });
 
-const config = {
-  initialColorMode: 'light',
-  useSystemColorMode: true,
-};
-
-const theme = extendTheme({ config });
-
 const MyApp = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
     const updateCoinPrice = setInterval(async () => {
@@ -89,15 +54,14 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   }, []);
 
   return (
-    <Web3Provider>
-      <ChakraProvider resetCSS theme={theme}>
-        {/* <WagmiConfig config={client}> */}
-        {/* <SessionProvider session={pageProps.session} refetchInterval={0}> */}
-        <Component {...pageProps} />
-        {/* </SessionProvider> */}
-        {/* </WagmiConfig> */}
-      </ChakraProvider>
-    </Web3Provider>
+    <Providers>
+      <style jsx global>{`
+        body {
+          font-family: ${walletFont.style.fontFamily};
+        }
+      `}</style>
+      <Component {...pageProps} />
+    </Providers>
   );
 };
 

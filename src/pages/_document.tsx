@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { ZEUS_APP_NAME } from 'packages/constants';
 
 class AppDocument extends Document {
   render() {
@@ -43,7 +44,7 @@ class AppDocument extends Document {
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-          <meta name="apple-mobile-web-app-title" content={'ZEUS'} />
+          <meta name="apple-mobile-web-app-title" content={ZEUS_APP_NAME} />
 
           <script src="https://unpkg.com/@layerzerolabs/stargate-ui@latest/element.js" defer async></script>
         </Head>

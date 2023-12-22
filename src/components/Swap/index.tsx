@@ -1,15 +1,14 @@
-import Header from 'components/Common/Header';
+import MetaTags from 'components/Common/MetaTags';
 import SidebarWithHeader from 'components/Navigation/Sidebar';
 import SwapPage from '../SwapPage';
 
 const Swap = () => {
   return (
     <>
-      <Header pageName="swap">
-        <SidebarWithHeader>
-          <SwapPage />
-        </SidebarWithHeader>
-      </Header>
+      <MetaTags title="Swap" />
+      <SidebarWithHeader>
+        <SwapPage />
+      </SidebarWithHeader>
     </>
   );
 };

@@ -1,9 +1,12 @@
 import { AbsoluteCenter, Box, Button, Container, Flex, Image, Text, Center } from '@chakra-ui/react';
+import MetaTags from 'components/Common/MetaTags';
 import Link from 'next/link';
+import { ZEUS_APP_NAME } from 'packages/constants';
 
 const Custom404 = () => {
   return (
     <>
+      <MetaTags title="Not found" />
       <Center>
         <Flex flexDirection={'column'} alignItems={'center'}>
           <Box className="mb-10">
@@ -15,7 +18,7 @@ const Custom404 = () => {
             // alt={TAPE_APP_NAME}
           /> */}
             <Text fontSize={30} fontWeight="bold">
-              ZEUS WALLET
+              {ZEUS_APP_NAME}
             </Text>
           </Box>
           <Text className="text-4xl font-bold">404</Text>

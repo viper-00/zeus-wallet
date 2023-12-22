@@ -77,6 +77,12 @@ const TransactionsPage = () => {
                       ))}
                   </Tbody>
                 </Table>
+
+                {txs.length === 0 && (
+                  <Text fontWeight={'bold'} fontSize={20} textAlign={'center'} p={10}>
+                    No transaction found
+                  </Text>
+                )}
               </TableContainer>
             </TabPanel>
             <TabPanel>
@@ -106,11 +112,17 @@ const TransactionsPage = () => {
                       ))}
                   </Tbody>
                 </Table>
+
+                {txs.length === 0 && (
+                  <Text fontWeight={'bold'} fontSize={20} textAlign={'center'} p={10}>
+                    No transaction found
+                  </Text>
+                )}
               </TableContainer>
             </TabPanel>
             <TabPanel>
               <TableContainer>
-                <Text fontWeight={'bold'} fontSize={20} textAlign={'center'} py={10}>
+                <Text fontWeight={'bold'} fontSize={20} textAlign={'center'} p={10}>
                   No transaction found
                 </Text>
               </TableContainer>

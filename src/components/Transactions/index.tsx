@@ -1,15 +1,14 @@
-import Header from 'components/Common/Header';
+import MetaTags from 'components/Common/MetaTags';
 import SidebarWithHeader from 'components/Navigation/Sidebar';
 import TransactionsPage from '../TransactionsPage';
 
 const Transactions = () => {
   return (
     <>
-      <Header pageName="transactions">
-        <SidebarWithHeader>
-          <TransactionsPage />
-        </SidebarWithHeader>
-      </Header>
+      <MetaTags title="Transactions" />
+      <SidebarWithHeader>
+        <TransactionsPage />
+      </SidebarWithHeader>
     </>
   );
 };

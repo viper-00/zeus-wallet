@@ -1,15 +1,14 @@
-import Header from 'components/Common/Header';
+import MetaTags from 'components/Common/MetaTags';
 import SidebarWithHeader from 'components/Navigation/Sidebar';
 import BridgePage from '../BridgePage';
 
 const Bridge = () => {
   return (
     <>
-      <Header pageName="bridge">
-        <SidebarWithHeader>
-          <BridgePage />
-        </SidebarWithHeader>
-      </Header>
+      <MetaTags title="Bridge" />
+      <SidebarWithHeader>
+        <BridgePage />
+      </SidebarWithHeader>
     </>
   );
 };

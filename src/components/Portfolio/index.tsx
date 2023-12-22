@@ -1,15 +1,14 @@
-import Header from 'components/Common/Header';
+import MetaTags from 'components/Common/MetaTags';
 import SidebarWithHeader from 'components/Navigation/Sidebar';
 import WalletPage from '../Wallet';
 
 const Portfolio = () => {
   return (
     <>
-      <Header pageName="portfolio">
-        <SidebarWithHeader>
-          <WalletPage />
-        </SidebarWithHeader>
-      </Header>
+      <MetaTags title="Portfolio" />
+      <SidebarWithHeader>
+        <WalletPage />
+      </SidebarWithHeader>
     </>
   );
 };

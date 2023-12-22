@@ -242,9 +242,9 @@ const WalletPage = () => {
             <Card py={5} backgroundColor={useColorModeValue('white', 'gray.900')}>
               <Flex alignItems={'center'} justifyContent={'space-between'} px={5}>
                 <Text>Coins</Text>
-                <Box>
+                {/* <Box>
                   <Checkbox value="sasuke">Only Verified Coins</Checkbox>
-                </Box>
+                </Box> */}
               </Flex>
 
               <List mt={10}>

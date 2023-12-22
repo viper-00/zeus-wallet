@@ -1,15 +1,14 @@
-import Header from 'components/Common/Header';
+import MetaTags from 'components/Common/MetaTags';
 import SidebarWithHeader from 'components/Navigation/Sidebar';
 import ReceivePage from '../ReceivePage';
 
 const Receive = () => {
   return (
     <>
-      <Header pageName="transactions">
-        <SidebarWithHeader>
-          <ReceivePage />
-        </SidebarWithHeader>
-      </Header>
+      <MetaTags title="Receive" />
+      <SidebarWithHeader>
+        <ReceivePage />
+      </SidebarWithHeader>
     </>
   );
 };

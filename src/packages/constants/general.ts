@@ -1,4 +1,4 @@
-export const ZEUS_APP_NAME = 'ZEUS-WALLET';
+export const ZEUS_APP_NAME = 'ZEUSWALLET';
 export const ZEUS_APP_DESCRIPTION = 'Talk, Amplify, Post, Explore';
 
 export const ZEUS_ENV = process.env.NEXT_PUBLIC_ENVIRONMENT ?? 'mainnet';

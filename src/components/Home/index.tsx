@@ -13,7 +13,6 @@ import {
   InputRightElement,
   useColorModeValue,
 } from '@chakra-ui/react';
-import Header from 'components/Common/Header';
 import HomeNav from 'components/Common/HomeNav';
 import { Web3 } from 'packages/core';
 import { useEffect, useState } from 'react';
@@ -22,6 +21,7 @@ import { Chain } from 'packages/types';
 import { useRouter } from 'next/router';
 import Footer from 'components/Footer';
 import ConnectButton from 'components/ConnectButton';
+import MetaTags from 'components/Common/MetaTags';
 
 const Home = () => {
   const router = useRouter();
@@ -70,6 +70,7 @@ const Home = () => {
   };
   return (
     <Container minW={'100%'} backgroundColor={useColorModeValue('white', 'gray.800')}>
+      <MetaTags title='Home' />
       <HomeNav />
       <Container centerContent>
         <Heading marginBottom={6} lineHeight="tall" fontSize={30}>

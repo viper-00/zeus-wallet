@@ -1,17 +1,16 @@
-import Header from 'components/Common/Header';
+import MetaTags from 'components/Common/MetaTags';
 import SidebarWithHeader from 'components/Navigation/Sidebar';
 import SendPage from '../SendPage';
 
-const Receive = () => {
+const Send = () => {
   return (
     <>
-      <Header pageName="transactions">
-        <SidebarWithHeader>
-          <SendPage />
-        </SidebarWithHeader>
-      </Header>
+      <MetaTags title="Send" />
+      <SidebarWithHeader>
+        <SendPage />
+      </SidebarWithHeader>
     </>
   );
 };
 
-export default Receive;
+export default Send;

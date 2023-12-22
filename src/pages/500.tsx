@@ -1,9 +1,12 @@
 import { Box, Button, Flex, Image, Text, Center } from '@chakra-ui/react';
+import MetaTags from 'components/Common/MetaTags';
 import Link from 'next/link';
+import { ZEUS_APP_NAME } from 'packages/constants';
 
-const Custom404 = () => {
+const Custom500 = () => {
   return (
     <>
+      <MetaTags title="500" />
       <Center>
         <Flex flexDirection={'column'} alignItems={'center'}>
           <Box className="mb-10">
@@ -14,8 +17,12 @@ const Custom404 = () => {
             width={200}
             // alt={TAPE_APP_NAME}
           /> */}
-            <Image src="https://bit.ly/dan-abramov" alt="Dan Abramov" />
+            {/* <Image src="https://bit.ly/dan-abramov" alt="Dan Abramov" /> */}
+            <Text fontSize={30} fontWeight="bold">
+              {ZEUS_APP_NAME}
+            </Text>
           </Box>
+          <Text className="text-4xl font-bold">500</Text>
           <Text className="text-4xl font-bold">Looks like something went wrong!</Text>
           <Box className="mb-6">
             We track these errors automatically, but if the problem persists feel free to contact us. In the meantime,
@@ -30,4 +37,4 @@ const Custom404 = () => {
   );
 };
 
-export default Custom404;
+export default Custom500;
