@@ -67,7 +67,7 @@ interface SidebarProps extends BoxProps {
   onClose: () => void;
 }
 
-const OneLinkItems: Array<LinkItemProps> = [
+const MainLinkItems: Array<LinkItemProps> = [
   { name: 'Portfolio', icon: FiHome, link: '/portfolio' },
   // { name: 'Card', icon: FiCreditCard, link: '/card' },
   // { name: 'DeFi', icon: FiActivity, link: '/defi' },
@@ -75,13 +75,26 @@ const OneLinkItems: Array<LinkItemProps> = [
   { name: 'Transactions', icon: AiOutlineTransaction, link: '/transactions' },
 ];
 
-const TwoLinkItems: Array<LinkItemProps> = [
+const ActionLinkItems: Array<LinkItemProps> = [
   { name: 'Send', icon: BsArrowUpRightCircle, link: '/send' },
   { name: 'Receive', icon: BsArrowDownLeftCircle, link: '/receive' },
   { name: 'Bridge', icon: TbBuildingBridge2, link: '/bridge' },
   { name: 'Swap', icon: MdOutlineSwapHoriz, link: '/swap' },
   // { name: 'Buy', icon: RiAddFill, link: '/buy' },
   // { name: 'Sell', icon: FiMinus, link: '/sell' },
+];
+
+const ToolsLinkItems: Array<LinkItemProps> = [
+  { name: 'DeFi', icon: BsArrowUpRightCircle, link: '/tools/defi' },
+  { name: 'Nft', icon: BsArrowUpRightCircle, link: '/tools/nft' },
+  { name: 'Daos', icon: BsArrowUpRightCircle, link: '/tools/daos' },
+  { name: 'Wallet', icon: BsArrowUpRightCircle, link: '/tools/wallet' },
+  { name: 'Block explorers', icon: BsArrowUpRightCircle, link: '/tools/blockexplorer' },
+  { name: 'Storage', icon: BsArrowUpRightCircle, link: '/tools/storage' },
+  { name: 'Security', icon: BsArrowUpRightCircle, link: '/tools/security' },
+  { name: 'Tech', icon: BsArrowUpRightCircle, link: '/tools/tech' },
+  { name: 'Developer', icon: BsArrowUpRightCircle, link: '/tools/developer' },
+  { name: 'News', icon: BsArrowUpRightCircle, link: '/tools/news' },
 ];
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
@@ -98,6 +111,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       pos="fixed"
       h="full"
       {...rest}
+      overflowX="auto"
     >
       <Flex flexDirection={'column'} height={'100%'} justifyContent={'space-between'}>
         <Flex flexDirection={'column'}>
@@ -108,7 +122,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
           </Flex>
 
-          {OneLinkItems.map((item) => (
+          {MainLinkItems.map((item) => (
             <NavItem
               marginBottom={1}
               backgroundColor={router.pathname === item.link ? '#0bc5ea' : ''}
@@ -144,7 +158,43 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             <Text>Action</Text>
           </Flex>
 
-          {TwoLinkItems.map((item) => (
+          {ActionLinkItems.map((item) => (
+            <NavItem
+              marginBottom={1}
+              backgroundColor={router.pathname === item.link ? '#0bc5ea' : ''}
+              color={router.pathname === item.link ? 'white' : ''}
+              key={item.name}
+              icon={item.icon}
+              onClick={() => {
+                router.push(item.link);
+              }}
+            >
+              {item.name}
+            </NavItem>
+          ))}
+
+          <Flex
+            h="20"
+            align={'center'}
+            _before={{
+              content: '""',
+              borderBottom: '1px solid',
+              borderColor: useColorModeValue('gray.200', 'gray.700'),
+              flexGrow: 1,
+              mr: 8,
+            }}
+            _after={{
+              content: '""',
+              borderBottom: '1px solid',
+              borderColor: useColorModeValue('gray.200', 'gray.700'),
+              flexGrow: 1,
+              ml: 8,
+            }}
+          >
+            <Text>Tools</Text>
+          </Flex>
+
+          {ToolsLinkItems.map((item) => (
             <NavItem
               marginBottom={1}
               backgroundColor={router.pathname === item.link ? '#0bc5ea' : ''}
@@ -160,7 +210,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           ))}
         </Flex>
 
-        <Box mb={10}>
+        <Box pb={5}>
           <Flex justifyContent={'center'} mt={10}>
             <Box>
               <FormControl display="flex" alignItems="center">
@@ -278,6 +328,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
       justifyContent={{ base: 'space-between', md: 'flex-end' }}
       {...rest}
+      overflowY="auto"
     >
       <IconButton
         display={{ base: 'flex', md: 'none' }}
@@ -287,13 +338,9 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         icon={<FiMenu />}
       />
 
-      <Text display={{ base: 'flex', md: 'none' }} fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-        ZEUS WALLET
-      </Text>
-
       <Box width={'100%'}>
         <Flex alignItems={'center'} width={400}>
-          <Box borderWidth={1}>
+          <Box borderWidth={1} ml={2}>
             <Menu>
               <MenuButton
                 as={Button}
@@ -346,7 +393,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
 
       <HStack spacing={{ base: '0', md: '6' }}>
         <IconButton
-          aria-label="Search database"
+          aria-label=""
           icon={<AiOutlineEye />}
           bg={useColorModeValue('White', 'Gray.900')}
           px={4}
@@ -361,6 +408,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         />
         <Button
           px={4}
+          ml={2}
           fontSize={'sm'}
           rounded={'full'}
           bg={useColorModeValue('White', 'Gray.900')}
