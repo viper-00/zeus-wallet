@@ -1,8 +1,20 @@
 import { LinkIcon } from '@chakra-ui/icons';
-import { Heading, Avatar, Box, Center, Image, Flex, Text, Stack, Button, useColorModeValue } from '@chakra-ui/react';
+import { Heading, Avatar, Box, Center, Flex, Text, Stack, Button, useColorModeValue } from '@chakra-ui/react';
+import Image from 'next/image';
 import Link from 'next/link';
+import { MainToolList } from 'packages/constants/toollist';
+import { FC } from 'react';
 
-const ToolCard = () => {
+type Props = {
+  tool: MainToolList;
+};
+
+const ToolCard: FC<Props> = (props) => {
+  const tool = props.tool;
+
+  const socialColorModeValue = useColorModeValue('gray.900', 'green.400');
+  const networkColorModeValue = useColorModeValue('#151f21', 'gray.800');
+
   return (
     <Box
       width={500}
@@ -15,18 +27,14 @@ const ToolCard = () => {
       my={5}
     >
       <Flex>
-        <Image
-          src="https://krperkqbaqewikgzuoea.supabase.co/storage/v1/object/public/logos/uniswap.jpeg"
-          alt="image"
-          width={70}
-          height={70}
-          borderRadius={10}
-        />
+        <Box borderRadius={10} overflow={'hidden'}>
+          <Image src={tool?.Icon} alt="image" width={70} height={70} />
+        </Box>
         <Flex flexDirection={'column'} ml={5}>
           <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'} mb={2}>
-            Uniswap
+            {tool?.Title}
           </Heading>
-          <Link href={''}>
+          <Link href={tool?.Website}>
             <Flex alignItems={'center'} color={useColorModeValue('gray.900', 'green.400')}>
               <LinkIcon boxSize={3} />
               <Text fontSize={'12'} ml={1} fontWeight={'bold'}>
@@ -39,9 +47,7 @@ const ToolCard = () => {
 
       <Box>
         <Stack spacing={0} mt={5}>
-          <Text color={useColorModeValue('', 'gray.100')}>
-            Uniswap is a protocol for trading and automated liquidity provision on ethereum.
-          </Text>
+          <Text color={useColorModeValue('', 'gray.100')}>{tool?.Descriotion}</Text>
         </Stack>
 
         <Stack>
@@ -49,41 +55,38 @@ const ToolCard = () => {
             Social
           </Text>
           <Flex>
-            <Link href={''}>
-              <Flex alignItems={'center'} mr={5} color={useColorModeValue('gray.900', 'green.400')}>
-                <LinkIcon boxSize={3} />
-                <Text ml={1} fontSize={12}>
-                  X
-                </Text>
-              </Flex>
-            </Link>
-            <Link href={''}>
-              <Flex alignItems={'center'} mr={5} color={useColorModeValue('gray.900', 'green.400')}>
-                <LinkIcon boxSize={3} />
-                <Text ml={1} fontSize={12}>
-                  X
-                </Text>
-              </Flex>
-            </Link>
+            {tool?.Socials?.map((element, index) => (
+              <Link href={element.Link} key={index}>
+                <Flex alignItems={'center'} mr={5} color={socialColorModeValue}>
+                  <LinkIcon boxSize={3} />
+                  <Text ml={1} fontSize={12}>
+                    {element.Title}
+                  </Text>
+                </Flex>
+              </Link>
+            ))}
           </Flex>
           <Text my={3} color={'gray.500'} fontWeight="bold">
             Network
           </Text>
           <Flex flexWrap={'wrap'}>
-            <Flex
-              width={100}
-              height={6}
-              borderRadius={5}
-              bg={useColorModeValue('#151f21', 'gray.800')}
-              alignItems={'center'}
-              justifyContent={'center'}
-              mr={2}
-              mb={2}
-            >
-              <Text color={'white'} fontSize={12}>
-                Ethereum
-              </Text>
-            </Flex>
+            {tool.Networks.map((item, index) => (
+              <Flex
+                width={100}
+                height={6}
+                borderRadius={5}
+                bg={networkColorModeValue}
+                alignItems={'center'}
+                justifyContent={'center'}
+                mr={2}
+                mb={2}
+                key={index}
+              >
+                <Text color={'white'} fontSize={12}>
+                  {item}
+                </Text>
+              </Flex>
+            ))}
           </Flex>
         </Stack>
 
@@ -98,7 +101,7 @@ const ToolCard = () => {
             boxShadow: 'lg',
           }}
           onClick={() => {
-            window.location.href = '#';
+            window.location.href = tool.Website;
           }}
         >
           View

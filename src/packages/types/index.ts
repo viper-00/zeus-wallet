@@ -2,16 +2,26 @@ import { TokenInfo } from 'packages/constants/tokenList';
 
 export enum Chain {
   ETH = 1,
-  ETH_GOR = 5,
-  ETH_OP = 10,
-  BSC = 56,
-  POLYGON = 137,
-  ARBITRUM_ONE = 42161,
-  ARBITRUM_NOVA = 42170,
-
   BTC = 2,
   TRON = 3,
+  ETH_GOR = 5,
+  OPTIMISM = 10,
   LTC = 11,
+  TELOS = 40,
+  BSC = 56,
+  FUSE = 122,
+  HECO = 128,
+  POLYGON = 137,
+  FANTOM = 250,
+  ZKSYNC = 324,
+  MOONRIVER = 1285,
+  ARBITRUM_ONE = 42161,
+  ARBITRUM_NOVA = 42170,
+  CELO = 42220,
+  AVALANCHE = 43114,
+  SOLANA = 1399811149,
+  HARMONY = 1666600000,
+  PALM = 11297108109,
 }
 
 export enum WalletStatus {
@@ -22,15 +32,26 @@ export enum WalletStatus {
 
 export const ChainIdToName: { [key in Chain]: string } = {
   [Chain.ETH]: 'Ethereum',
-  [Chain.ETH_GOR]: 'Ethereum Testnet Goerli',
-  [Chain.ETH_OP]: 'OP Mainnet',
-  [Chain.POLYGON]: 'Polygon',
-  [Chain.ARBITRUM_ONE]: 'Arbitrum One',
-  [Chain.ARBITRUM_NOVA]: 'Arbitrum Nova',
   [Chain.BTC]: 'Bitcoin',
   [Chain.TRON]: 'Tron',
-  [Chain.BSC]: 'BNB Smart Chain',
+  [Chain.ETH_GOR]: 'Ethereum Testnet Goerli',
+  [Chain.OPTIMISM]: 'Optimism',
   [Chain.LTC]: 'Litecoin',
+  [Chain.TELOS]: 'Telos',
+  [Chain.BSC]: 'BNB Smart Chain',
+  [Chain.FUSE]: 'Fuse',
+  [Chain.HECO]: 'Heco',
+  [Chain.POLYGON]: 'Polygon',
+  [Chain.FANTOM]: 'Fantom',
+  [Chain.ZKSYNC]: 'Zksync',
+  [Chain.MOONRIVER]: 'Moonriver',
+  [Chain.ARBITRUM_ONE]: 'Arbitrum',
+  [Chain.ARBITRUM_NOVA]: 'Arbitrum Nova',
+  [Chain.CELO]: 'Celo',
+  [Chain.AVALANCHE]: 'Avalanche',
+  [Chain.SOLANA]: 'Solana',
+  [Chain.HARMONY]: 'Harmony',
+  [Chain.PALM]: 'Paml',
 };
 
 export enum TxStatus {
