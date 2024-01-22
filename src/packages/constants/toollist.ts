@@ -1101,7 +1101,7 @@ export const toolList: ToolListInfo[] = [
             Website: 'https://seedsigner.com/',
             Descriotion:
               'Build a secure Bitcoin signing device for about $50 (all software, specs & designs are FOSS).',
-            Icon: require('../../assets/tools/seedSigner.jpg'),
+            Icon: require('../../assets/tools/seedsigner.jpg'),
             Socials: [
               {
                 Title: ToolTitle.X,
@@ -1137,7 +1137,7 @@ export const toolList: ToolListInfo[] = [
             Website: 'https://shapeshift.com/keepkey',
             Descriotion:
               'Protect your cryptocurrencies, store your private keys offline, and safeguard your assets from hackers.',
-            Icon: require('../../assets/tools/keepKey.jpg'),
+            Icon: require('../../assets/tools/keepkey.jpg'),
             Socials: [
               {
                 Title: ToolTitle.X,
@@ -1163,7 +1163,7 @@ export const toolList: ToolListInfo[] = [
             Website: 'https://shiftcrypto.ch/',
             Descriotion:
               'Boardroom is a DAO discovery and governance platform, home to communities shaping the future of the ownership economy.',
-            Icon: require('../../assets/tools/bitBox.jpg'),
+            Icon: require('../../assets/tools/bitbox.jpg'),
             Socials: [
               {
                 Title: ToolTitle.X,
