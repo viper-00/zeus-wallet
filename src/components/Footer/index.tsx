@@ -56,9 +56,9 @@ const Footer = () => {
               Socials
             </Text>
             <VStack spacing={2} alignItems="flex-start" color="gray.500">
-              <CustomLink>X (Twitter)</CustomLink>
-              <CustomLink>Telegram</CustomLink>
-              <CustomLink>Discord</CustomLink>
+              <CustomLink href="mailto:zeuswallet00@gmail.com">Email</CustomLink>
+              <CustomLink href="https://t.me/+CnSTtret4PJkYjRl">Telegram</CustomLink>
+              <CustomLink href="https://discord.gg/Vw4zhCfvNP">Discord</CustomLink>
             </VStack>
           </VStack>
         </HStack>
@@ -70,7 +70,7 @@ const Footer = () => {
         <Text fontSize="md">
           Built by{' '}
           <Link href="/" textDecoration="underline" _hover={{ textDecoration: 'underline' }} isExternal>
-            Zeus Wallet
+            Zeus Wallet Teams
           </Link>
         </Text>
       </Stack>

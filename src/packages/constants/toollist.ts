@@ -53,6 +53,7 @@ export const ToolTitle = {
   Governance: 'Governance & Voting',
   Marketplace: 'Marketplace',
   HardwareWallets: 'Hardware Wallets',
+  Web3Wallets: 'Web3 Wallets',
 
   X: 'X',
   Discord: 'Discord',
@@ -652,19 +653,215 @@ export const toolList: ToolListInfo[] = [
         SecondType: ToolTitle.Lending,
         Title: 'Lending & Borrowing',
         Descriotion: 'Lend and borrow stablecoins and other tokens and earn yields on your deposits.',
-        Tools: [],
+        Tools: [
+          {
+            Title: 'Aave',
+            Website: 'https://aave.com/',
+            Descriotion: 'Aave is an open source and non-custodial liquidity protocol.',
+            Icon: require('../../assets/tools/aave.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/aave',
+              },
+              {
+                Title: ToolTitle.Telegram,
+                Link: 'https://t.me/Aavesome',
+              },
+              {
+                Title: ToolTitle.Discord,
+                Link: 'https://aave.com/discord',
+              },
+              {
+                Title: ToolTitle.Github,
+                Link: 'https://github.com/aave/aave-protocol',
+              },
+            ],
+            Networks: [ChainIdToName[Chain.ETH], ChainIdToName[Chain.POLYGON], ChainIdToName[Chain.AVALANCHE]],
+          },
+          {
+            Title: 'Compound',
+            Website: 'https://compound.finance/',
+            Descriotion:
+              'Compound is an algorithmic, autonomous interest rate protocol built for developers, to unlock a universe of open financial applications.',
+            Icon: require('../../assets/tools/compoundfinance.png'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/compoundfinance',
+              },
+              {
+                Title: ToolTitle.Medium,
+                Link: 'https://medium.com/compound-finance',
+              },
+              {
+                Title: ToolTitle.Discord,
+                Link: 'https://compound.finance/discord',
+              },
+              {
+                Title: ToolTitle.Github,
+                Link: 'https://github.com/compound-finance/compound-protocol',
+              },
+            ],
+            Networks: [ChainIdToName[Chain.ETH]],
+          },
+          {
+            Title: 'Bastion',
+            Website: 'https://app.bastionprotocol.com/',
+            Descriotion: 'Decentralized lending on Aurora',
+            Icon: require('../../assets/tools/bastion.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/BastionProtocol',
+              },
+              {
+                Title: ToolTitle.Medium,
+                Link: 'https://bastionprotocol.medium.com/',
+              },
+              {
+                Title: ToolTitle.Discord,
+                Link: 'https://discord.gg/bastionprotocol',
+              },
+            ],
+            Networks: [ChainIdToName[Chain.AURORA]],
+          },
+        ],
       },
       {
         SecondType: ToolTitle.Insurance,
         Title: 'Insurance',
         Descriotion: 'Insure your deposits against hacks or protocol failures.',
-        Tools: [],
+        Tools: [
+          {
+            Title: 'Bridge Mutual',
+            Website: 'https://bridgemutual.io/',
+            Descriotion: 'Risk coverage platform for stablecoins, protocols, smart contracts, exchanges & more.',
+            Icon: require('../../assets/tools/bridgemutual.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/bridge_mutual',
+              },
+              {
+                Title: ToolTitle.Telegram,
+                Link: 'https://t.me/bridge_mutual',
+              },
+              {
+                Title: ToolTitle.Discord,
+                Link: 'https://discord.gg/bmi',
+              },
+              {
+                Title: ToolTitle.Medium,
+                Link: 'https://bridgemutual.medium.com/',
+              },
+              {
+                Title: ToolTitle.Github,
+                Link: 'https://github.com/Bridge-Mutual',
+              },
+            ],
+            Networks: [ChainIdToName[Chain.ETH]],
+          },
+          {
+            Title: 'Nexus Mutual',
+            Website: 'https://nexusmutual.io/',
+            Descriotion: 'Comprehensive coverage for your productive assets in DeFi & CeFi.',
+            Icon: require('../../assets/tools/nexusmutual.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/NexusMutual',
+              },
+              {
+                Title: ToolTitle.Discord,
+                Link: 'https://discord.gg/aQjkzW5',
+              },
+              {
+                Title: ToolTitle.Telegram,
+                Link: 'https://t.me/joinchat/K_g-fA-3CmFwXumCKQUXkw',
+              },
+              {
+                Title: ToolTitle.Medium,
+                Link: 'https://medium.com/nexus-mutual',
+              },
+              {
+                Title: ToolTitle.Github,
+                Link: 'https://github.com/NexusMutual',
+              },
+            ],
+            Networks: [ChainIdToName[Chain.ETH]],
+          },
+        ],
       },
       {
         SecondType: ToolTitle.Yield,
         Title: 'Yield Farming',
         Descriotion: 'The best yield farming opportunities and protocols.',
-        Tools: [],
+        Tools: [
+          {
+            Title: 'Beefy Finance',
+            Website: 'https://beefy.finance/',
+            Descriotion:
+              'Beefy is THE Multichain Yield Optimizer that focuses on safety and autocompounds crypto assets for the best APYs.',
+            Icon: require('../../assets/tools/beefyfinance.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/beefyfinance',
+              },
+              {
+                Title: ToolTitle.Discord,
+                Link: 'https://discord.gg/yq8wfHd',
+              },
+              {
+                Title: ToolTitle.Telegram,
+                Link: 'https://t.me/beefyfinance',
+              },
+              {
+                Title: ToolTitle.Medium,
+                Link: 'https://medium.com/beefyfinance',
+              },
+              {
+                Title: ToolTitle.Github,
+                Link: 'https://github.com/beefyfinance',
+              },
+              {
+                Title: ToolTitle.Reddit,
+                Link: 'https://www.reddit.com/r/Beefy/',
+              },
+            ],
+            Networks: [
+              ChainIdToName[Chain.BSC],
+              ChainIdToName[Chain.AVALANCHE],
+              ChainIdToName[Chain.POLYGON],
+              ChainIdToName[Chain.ARBITRUM_ONE],
+              ChainIdToName[Chain.CELO],
+              ChainIdToName[Chain.MOONRIVER],
+            ],
+          },
+          {
+            Title: 'vfat',
+            Website: 'https://vfat.tools/',
+            Descriotion:
+              'A set of no-frills tools for yield farming with a dashboard and farming calculator that allows you to find the most popular farms and their yields.',
+            Icon: require('../../assets/tools/vfat.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/vfat0',
+              },
+              {
+                Title: ToolTitle.Discord,
+                Link: 'https://discord.gg/vfat',
+              },
+              {
+                Title: ToolTitle.Github,
+                Link: 'https://github.com/vfat-tools/vfat-tools',
+              },
+            ],
+            Networks: [ChainIdToName[Chain.ETH]],
+          },
+        ],
       },
       {
         SecondType: ToolTitle.Airdrops,
@@ -684,7 +881,71 @@ export const toolList: ToolListInfo[] = [
         SecondType: ToolTitle.NFTMarketplace,
         Title: 'NFT Marketplace',
         Descriotion: 'All the best places to browse, buy and sell NFTs.',
-        Tools: [],
+        Tools: [
+          {
+            Title: 'Opensea',
+            Website: 'https://opensea.io/',
+            Descriotion: 'The largest NFT marketplace. Buy, sell, & discover the internet of goods.',
+            Icon: require('../../assets/tools/opensea.png'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/opensea',
+              },
+              {
+                Title: ToolTitle.Discord,
+                Link: 'https://discord.gg/opensea',
+              },
+              {
+                Title: ToolTitle.Reddit,
+                Link: 'https://reddit.com/r/opensea',
+              },
+            ],
+            Networks: [ChainIdToName[Chain.ETH], ChainIdToName[Chain.POLYGON]],
+          },
+          {
+            Title: 'Looksrare',
+            Website: 'https://looksrare.org/',
+            Descriotion: 'LooksRare is the community-first NFT marketplace with rewards for participating.',
+            Icon: require('../../assets/tools/looksrare.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/looksrarenft',
+              },
+              {
+                Title: ToolTitle.Discord,
+                Link: 'https://discord.gg/looksrare',
+              },
+            ],
+            Networks: [ChainIdToName[Chain.ETH]],
+          },
+          {
+            Title: 'Rarible',
+            Website: 'https://rarible.com/',
+            Descriotion: 'Multi-chain community-centric NFT marketplace. Create, sell and collect digital items.',
+            Icon: require('../../assets/tools/rarible.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/rarible',
+              },
+              {
+                Title: ToolTitle.Discord,
+                Link: 'https://discord.gg/cdaFbV5',
+              },
+              {
+                Title: ToolTitle.Medium,
+                Link: 'https://medium.com/@rarible',
+              },
+              {
+                Title: ToolTitle.Telegram,
+                Link: 'https://t.me/rarible',
+              },
+            ],
+            Networks: [ChainIdToName[Chain.ETH]],
+          },
+        ],
       },
     ],
   },
@@ -698,40 +959,409 @@ export const toolList: ToolListInfo[] = [
         SecondType: ToolTitle.Governance,
         Title: 'Governance & Voting',
         Descriotion: 'Manage your DAO voting and proposals',
-        Tools: [],
+        Tools: [
+          {
+            Title: 'Snapshot',
+            Website: 'https://snapshot.org/#/',
+            Descriotion:
+              'In short, Snapshot is an off-chain gasless multi-governance client with easy to verify and hard to contest results.',
+            Icon: require('../../assets/tools/snapshot.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/SnapshotLabs',
+              },
+              {
+                Title: ToolTitle.Discord,
+                Link: 'https://discord.com/invite/snapshot',
+              },
+              {
+                Title: ToolTitle.Github,
+                Link: 'https://github.com/snapshot-labs',
+              },
+              {
+                Title: ToolTitle.Telegram,
+                Link: 'https://t.me/snapshotlabs',
+              },
+            ],
+            Networks: [
+              ChainIdToName[Chain.ETH],
+              ChainIdToName[Chain.POLYGON],
+              ChainIdToName[Chain.OPTIMISM],
+              ChainIdToName[Chain.BSC],
+              ChainIdToName[Chain.AVALANCHE],
+              ChainIdToName[Chain.ARBITRUM_ONE],
+            ],
+          },
+          {
+            Title: 'Tally',
+            Website: 'https://www.withtally.com/',
+            Descriotion:
+              'Tally empowers user owned governance through a voting dashboard, governance tooling, real time research and analysis, and an evergreen wiki.',
+            Icon: require('../../assets/tools/tally.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/voteWithTally',
+              },
+              {
+                Title: ToolTitle.Discord,
+                Link: 'https://discord.com/invite/sCGnpWH3m4',
+              },
+              {
+                Title: ToolTitle.Github,
+                Link: 'https://github.com/withtally/',
+              },
+            ],
+            Networks: [ChainIdToName[Chain.ETH]],
+          },
+          {
+            Title: 'Sybil',
+            Website: 'https://sybil.org/',
+            Descriotion: 'Sybil is a governance tool for discovering delegates.',
+            Icon: require('../../assets/tools/sybil.svg'),
+            Socials: [
+              {
+                Title: ToolTitle.Github,
+                Link: 'https://github.com/Uniswap/sybil-list',
+              },
+            ],
+            Networks: [ChainIdToName[Chain.ETH]],
+          },
+          {
+            Title: 'Boardroom',
+            Website: 'https://www.boardroom.info/',
+            Descriotion:
+              'Boardroom is a DAO discovery and governance platform, home to communities shaping the future of the ownership economy.',
+            Icon: require('../../assets/tools/boardroom.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/boardroom_info',
+              },
+              {
+                Title: ToolTitle.Discord,
+                Link: 'https://discord.gg/CEZ8WfuK8s',
+              },
+            ],
+            Networks: [ChainIdToName[Chain.ETH]],
+          },
+        ],
       },
     ],
   },
   {
     Title: ToolTitle.Wallet,
     FullTitle: 'Wallets',
-    Descriotion: 'Wallets for all blockchain flavours.',
+    Descriotion: 'Wallets for specific blockchain styles.',
     SecondTools: [
       {
         SecondType: ToolTitle.HardwareWallets,
         Title: 'Hardware wallets',
         Descriotion: 'The best and more secure solution for storing digital assets.',
-        Tools: [],
+        Tools: [
+          {
+            Title: 'Ledger',
+            Website: 'https://www.ledger.com/',
+            Descriotion:
+              'Ledger`s the smartest way to secure, buy, exchange and grow your crypto assets and trusted by 4 million customers',
+            Icon: require('../../assets/tools/ledger.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/Ledger',
+              },
+              {
+                Title: ToolTitle.Reddit,
+                Link: 'https://www.reddit.com/r/ledgerwallet/',
+              },
+            ],
+            Networks: [],
+          },
+          {
+            Title: 'Coldcard',
+            Website: 'https://coldcard.com/',
+            Descriotion:
+              'Coldcard is an easy to use, ultra-secure, open-source and affordable hardware wallet that is easy to back up via an encrypted microSD card.',
+            Icon: require('../../assets/tools/coldcard.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/COLDCARDwallet',
+              },
+              {
+                Title: ToolTitle.Telegram,
+                Link: 'https://t.me/coldcard',
+              },
+            ],
+            Networks: [],
+          },
+          {
+            Title: 'SeedSigner',
+            Website: 'https://seedsigner.com/',
+            Descriotion:
+              'Build a secure Bitcoin signing device for about $50 (all software, specs & designs are FOSS).',
+            Icon: require('../../assets/tools/seedSigner.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/SeedSigner',
+              },
+            ],
+            Networks: [ChainIdToName[Chain.BTC]],
+          },
+          {
+            Title: 'Trezor',
+            Website: 'https://trezor.io/',
+            Descriotion:
+              'Trezor is an hardware walllet with a simple and intuitive interface audited by security researchers.',
+            Icon: require('../../assets/tools/trezor.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/trezor',
+              },
+              {
+                Title: ToolTitle.Reddit,
+                Link: 'https://www.reddit.com/r/TREZOR/',
+              },
+              {
+                Title: ToolTitle.Github,
+                Link: 'https://github.com/trezor',
+              },
+            ],
+            Networks: [],
+          },
+          {
+            Title: 'KeepKey',
+            Website: 'https://shapeshift.com/keepkey',
+            Descriotion:
+              'Protect your cryptocurrencies, store your private keys offline, and safeguard your assets from hackers.',
+            Icon: require('../../assets/tools/keepKey.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/ShapeShift_io',
+              },
+              {
+                Title: ToolTitle.Telegram,
+                Link: 'https://t.me/shapeshiftofficial',
+              },
+              {
+                Title: ToolTitle.Discord,
+                Link: 'https://discord.gg/shapeshift',
+              },
+              {
+                Title: ToolTitle.Medium,
+                Link: 'https://medium.com/shapeshift-stories',
+              },
+            ],
+            Networks: [],
+          },
+          {
+            Title: 'BitBox',
+            Website: 'https://shiftcrypto.ch/',
+            Descriotion:
+              'Boardroom is a DAO discovery and governance platform, home to communities shaping the future of the ownership economy.',
+            Icon: require('../../assets/tools/bitBox.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/boardroom_info',
+              },
+              {
+                Title: ToolTitle.Telegram,
+                Link: 'https://t.me/bitboxwallet',
+              },
+            ],
+            Networks: [],
+          },
+          {
+            Title: 'Opendime',
+            Website: 'https://opendime.com/',
+            Descriotion:
+              'Opendime is a small USB stick that allows you to spend Bitcoin like a dollar bill. Pass it along multiple times. Connect to any USB to check balance. Unseal anytime to spend online. Trust no one.',
+            Icon: require('../../assets/tools/opendime.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/OPENDIME',
+              },
+            ],
+            Networks: [],
+          },
+        ],
+      },
+      {
+        SecondType: ToolTitle.Web3Wallets,
+        Title: 'Web3 wallets',
+        Descriotion: 'Wallets for specific blockchain styles.',
+        Tools: [
+          {
+            Title: 'Metamask',
+            Website: 'https://metamask.io/',
+            Descriotion:
+              'Metamask is one of the most widely used wallet to interact with Ethereum and other EVM copatible chains and trusted by over 21 million users worldwide.',
+            Icon: require('../../assets/tools/metamask.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/metamask/',
+              },
+              {
+                Title: ToolTitle.Medium,
+                Link: 'https://medium.com/metamask/',
+              },
+              {
+                Title: ToolTitle.Github,
+                Link: 'https://github.com/MetaMask/metamask-extension/',
+              },
+            ],
+            Networks: [ChainIdToName[Chain.ETH]],
+          },
+          {
+            Title: 'Phantom',
+            Website: 'https://phantom.app/',
+            Descriotion:
+              'Phantom makes it safe & easy for you to store, buy, send, receive, swap tokens and collect NFTs on the Solana blockchain.',
+            Icon: require('../../assets/tools/phantom.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/phantom',
+              },
+              {
+                Title: ToolTitle.Discord,
+                Link: 'https://discordapp.com/invite/GWSyrHg',
+              },
+              {
+                Title: ToolTitle.Github,
+                Link: 'https://github.com/argentlabs/',
+              },
+            ],
+            Networks: [ChainIdToName[Chain.ETH]],
+          },
+          {
+            Title: 'Uniswap Wallet',
+            Website: 'https://wallet.uniswap.org/',
+            Descriotion: 'Uniswap in your pocket. Safe, simple swapping & self-custody.',
+            Icon: require('../../assets/tools/uniswap.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/Uniswap',
+              },
+              {
+                Title: ToolTitle.Discord,
+                Link: 'https://discord.com/invite/FCfyBSbCU5',
+              },
+            ],
+            Networks: [
+              ChainIdToName[Chain.ETH],
+              ChainIdToName[Chain.ARBITRUM_ONE],
+              ChainIdToName[Chain.AVALANCHE],
+              ChainIdToName[Chain.BSC],
+              ChainIdToName[Chain.CELO],
+              ChainIdToName[Chain.OPTIMISM],
+              ChainIdToName[Chain.POLYGON],
+            ],
+          },
+          {
+            Title: 'Coinbase Wallet',
+            Website: 'https://www.coinbase.com/wallet',
+            Descriotion:
+              'The easiest and most secure crypto wallet and dapp browser. Your gateway to the decentralized web',
+            Icon: require('../../assets/tools/coinbase.png'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/coinbasewallet',
+              },
+            ],
+            Networks: [
+              ChainIdToName[Chain.ETH],
+              ChainIdToName[Chain.ARBITRUM_ONE],
+              ChainIdToName[Chain.AVALANCHE],
+              ChainIdToName[Chain.BSC],
+              ChainIdToName[Chain.CELO],
+              ChainIdToName[Chain.OPTIMISM],
+              ChainIdToName[Chain.POLYGON],
+              ChainIdToName[Chain.SOLANA],
+            ],
+          },
+          {
+            Title: 'OKX Wallet',
+            Website: 'https://www.okx.com/web3',
+            Descriotion: "Discover crypto, on top of one of the world's most reliable crypto trading & web3 apps.",
+            Icon: require('../../assets/tools/okx.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/okx',
+              },
+              {
+                Title: ToolTitle.Telegram,
+                Link: 'https://t.me/OKXOfficial_English',
+              },
+              {
+                Title: ToolTitle.Discord,
+                Link: 'https://discord.gg/e6EyvM5QwM',
+              },
+              {
+                Title: ToolTitle.Reddit,
+                Link: 'https://www.reddit.com/r/OKX',
+              },
+            ],
+            Networks: [
+              ChainIdToName[Chain.ETH],
+              ChainIdToName[Chain.ARBITRUM_ONE],
+              ChainIdToName[Chain.AVALANCHE],
+              ChainIdToName[Chain.BSC],
+              ChainIdToName[Chain.CELO],
+              ChainIdToName[Chain.OPTIMISM],
+              ChainIdToName[Chain.POLYGON],
+              ChainIdToName[Chain.SOLANA],
+            ],
+          },
+          {
+            Title: 'Rabby',
+            Website: 'https://rabby.io/',
+            Descriotion:
+              'Rabby is an open-source wallet extension that improves on a lot of features creating a better experience for DeFi users.',
+            Icon: require('../../assets/tools/rabby.jpg'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/Rabby_io',
+              },
+              {
+                Title: ToolTitle.Telegram,
+                Link: 'https://t.me/rabby_io',
+              },
+            ],
+            Networks: [ChainIdToName[Chain.ETH]],
+          },
+          {
+            Title: 'Rainbow',
+            Website: 'https://rainbow.me/',
+            Descriotion:
+              'The fun, simple, & secure way to explore Web3, NFTs, & Ethereum available for iOS and Android',
+            Icon: require('../../assets/tools/rainbow.png'),
+            Socials: [
+              {
+                Title: ToolTitle.X,
+                Link: 'https://twitter.com/rainbowdotme',
+              },
+              {
+                Title: ToolTitle.Github,
+                Link: 'https://github.com/rainbow-me/rainbow',
+              },
+            ],
+            Networks: [ChainIdToName[Chain.ETH]],
+          },
+        ],
       },
     ],
-  },
-  {
-    Title: ToolTitle.Tech,
-    FullTitle: 'Technology',
-    Descriotion: 'Tools for Web3 developers.',
-    SecondTools: [],
-  },
-  {
-    Title: ToolTitle.Developer,
-    FullTitle: 'Developer',
-    Descriotion: 'Tools for Web3 developers.',
-    SecondTools: [],
-  },
-  {
-    Title: ToolTitle.News,
-    FullTitle: 'News',
-    Descriotion: 'News for Web3 developers.',
-    SecondTools: [],
   },
   {
     Title: ToolTitle.BlockExplorers,
@@ -749,6 +1379,24 @@ export const toolList: ToolListInfo[] = [
     Title: ToolTitle.Security,
     FullTitle: 'Web3 Security',
     Descriotion: 'Web3 Security for Web3 developers.',
+    SecondTools: [],
+  },
+  {
+    Title: ToolTitle.Tech,
+    FullTitle: 'Technology',
+    Descriotion: 'Tools for Web3 developers.',
+    SecondTools: [],
+  },
+  {
+    Title: ToolTitle.Developer,
+    FullTitle: 'Developer',
+    Descriotion: 'Tools for Web3 developers.',
+    SecondTools: [],
+  },
+  {
+    Title: ToolTitle.News,
+    FullTitle: 'News',
+    Descriotion: 'News for Web3 developers.',
     SecondTools: [],
   },
 ];

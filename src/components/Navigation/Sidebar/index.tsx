@@ -33,7 +33,7 @@ import { FiHome, FiMenu, FiBell, FiCreditCard, FiActivity, FiMinus, FiCopy } fro
 import { BsArrowDownLeftCircle, BsArrowUpRightCircle } from 'react-icons/bs';
 import { BiLogoMedium } from 'react-icons/bi';
 import { TbBuildingBridge2 } from 'react-icons/tb';
-import { MdOutlineSwapHoriz } from 'react-icons/md';
+import { MdOutlineSwapHoriz, MdOutlineEmail } from 'react-icons/md';
 import { RiNftFill, RiTwitterXFill, RiAddFill } from 'react-icons/ri';
 import { FaDiscord, FaRedditAlien, FaTelegramPlane } from 'react-icons/fa';
 import { AiFillYoutube, AiOutlineEye, AiOutlineTransaction } from 'react-icons/ai';
@@ -229,13 +229,13 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 
           <Flex justifyContent={'center'} mt={5}>
             <Stack direction={'row'} spacing={6}>
-              <SocialButton label={'Discord'} href={'#'}>
+              <SocialButton label={'Email'} href={'mailto:zeuswallet00@gmail.com'}>
+                <MdOutlineEmail />
+              </SocialButton>
+              <SocialButton label={'Discord'} href={'https://discord.gg/Vw4zhCfvNP'}>
                 <FaDiscord />
               </SocialButton>
-              <SocialButton label={'Twitter'} href={'#'}>
-                <RiTwitterXFill />
-              </SocialButton>
-              <SocialButton label={'Telegram'} href={'#'}>
+              <SocialButton label={'Telegram'} href={'https://t.me/+CnSTtret4PJkYjRl'}>
                 <FaTelegramPlane />
               </SocialButton>
             </Stack>

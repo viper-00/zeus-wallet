@@ -19,6 +19,7 @@ export enum Chain {
   ARBITRUM_NOVA = 42170,
   CELO = 42220,
   AVALANCHE = 43114,
+  AURORA = 1313161554,
   SOLANA = 1399811149,
   HARMONY = 1666600000,
   PALM = 11297108109,
@@ -52,6 +53,7 @@ export const ChainIdToName: { [key in Chain]: string } = {
   [Chain.SOLANA]: 'Solana',
   [Chain.HARMONY]: 'Harmony',
   [Chain.PALM]: 'Paml',
+  [Chain.AURORA]: "Aurora",
 };
 
 export enum TxStatus {
