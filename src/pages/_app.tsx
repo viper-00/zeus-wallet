@@ -42,16 +42,16 @@ import { walletFont } from 'packages/font';
 // });
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  useEffect(() => {
-    const updateCoinPrice = setInterval(async () => {
-      const ids: string[] = tokenList.map((token) => token.ids);
-      await Web3.updateCryptoPrice(ids);
-    }, 1000 * 10);
+  // useEffect(() => {
+  //   const updateCoinPrice = setInterval(async () => {
+  //     const ids: string[] = tokenList.map((token) => token.ids);
+  //     await Web3.updateCryptoPrice(ids);
+  //   }, 1000 * 10);
 
-    return () => {
-      clearInterval(updateCoinPrice);
-    };
-  }, []);
+  //   return () => {
+  //     clearInterval(updateCoinPrice);
+  //   };
+  // }, []);
 
   return (
     <Providers>

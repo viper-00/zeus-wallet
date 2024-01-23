@@ -28,15 +28,22 @@ import {
   Button,
   Select,
   Tooltip,
+  Link,
+  Center,
 } from '@chakra-ui/react';
-import { FiHome, FiMenu, FiBell, FiCreditCard, FiActivity, FiMinus, FiCopy } from 'react-icons/fi';
-import { BsArrowDownLeftCircle, BsArrowUpRightCircle } from 'react-icons/bs';
-import { BiLogoMedium } from 'react-icons/bi';
+import { FiHome, FiMenu, FiBell } from 'react-icons/fi';
+import { BsArrowUpRightCircle } from 'react-icons/bs';
 import { TbBuildingBridge2 } from 'react-icons/tb';
-import { MdOutlineSwapHoriz, MdOutlineEmail } from 'react-icons/md';
-import { RiNftFill, RiTwitterXFill, RiAddFill } from 'react-icons/ri';
+import {
+  MdOutlineSwapHoriz,
+  MdOutlineEmail,
+  MdSecurity,
+  MdOutlineSdStorage,
+  MdOutlineAccountBalanceWallet,
+  MdBalcony,
+  MdCommit,
+} from 'react-icons/md';
 import { FaDiscord, FaRedditAlien, FaTelegramPlane } from 'react-icons/fa';
-import { AiFillYoutube, AiOutlineEye, AiOutlineTransaction } from 'react-icons/ai';
 import { IconType } from 'react-icons';
 import { FC, ReactNode, useEffect, useState } from 'react';
 import { chainList, ChainListInfo } from 'packages/constants/chainlist';
@@ -47,6 +54,10 @@ import { Chain } from 'packages/types';
 import { useColorMode } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 import Image from 'next/image';
+import { LuNewspaper } from 'react-icons/lu';
+import { SiXdadevelopers } from 'react-icons/si';
+import { DiTechcrunch } from 'react-icons/di';
+import { RiGuideFill } from 'react-icons/ri';
 
 interface LinkItemProps {
   name: string;
@@ -68,33 +79,34 @@ interface SidebarProps extends BoxProps {
 }
 
 const MainLinkItems: Array<LinkItemProps> = [
-  { name: 'Portfolio', icon: FiHome, link: '/portfolio' },
+  { name: 'Dashboard', icon: FiHome, link: '/dashboard' },
+  // { name: 'Portfolio', icon: FiHome, link: '/portfolio' },
   // { name: 'Card', icon: FiCreditCard, link: '/card' },
   // { name: 'DeFi', icon: FiActivity, link: '/defi' },
   // { name: 'NFT', icon: RiNftFill, link: '/nft' },
-  { name: 'Transactions', icon: AiOutlineTransaction, link: '/transactions' },
+  // { name: 'Transactions', icon: AiOutlineTransaction, link: '/transactions' },
 ];
 
 const ActionLinkItems: Array<LinkItemProps> = [
-  { name: 'Send', icon: BsArrowUpRightCircle, link: '/send' },
-  { name: 'Receive', icon: BsArrowDownLeftCircle, link: '/receive' },
-  { name: 'Bridge', icon: TbBuildingBridge2, link: '/bridge' },
+  // { name: 'Send', icon: BsArrowUpRightCircle, link: '/send' },
+  // { name: 'Receive', icon: BsArrowDownLeftCircle, link: '/receive' },
   { name: 'Swap', icon: MdOutlineSwapHoriz, link: '/swap' },
+  { name: 'Bridge', icon: TbBuildingBridge2, link: '/bridge' },
   // { name: 'Buy', icon: RiAddFill, link: '/buy' },
   // { name: 'Sell', icon: FiMinus, link: '/sell' },
 ];
 
 const ToolsLinkItems: Array<LinkItemProps> = [
-  { name: 'DeFi', icon: BsArrowUpRightCircle, link: '/tools/defi' },
-  { name: 'Nft', icon: BsArrowUpRightCircle, link: '/tools/nft' },
-  { name: 'Daos', icon: BsArrowUpRightCircle, link: '/tools/daos' },
-  { name: 'Wallet', icon: BsArrowUpRightCircle, link: '/tools/wallet' },
+  { name: 'DeFi', icon: RiGuideFill, link: '/tools/defi' },
+  { name: 'Nft', icon: MdCommit, link: '/tools/nft' },
+  { name: 'Daos', icon: MdBalcony, link: '/tools/daos' },
+  { name: 'Wallet', icon: MdOutlineAccountBalanceWallet, link: '/tools/wallet' },
   { name: 'Block explorers', icon: BsArrowUpRightCircle, link: '/tools/blockexplorer' },
-  { name: 'Storage', icon: BsArrowUpRightCircle, link: '/tools/storage' },
-  { name: 'Security', icon: BsArrowUpRightCircle, link: '/tools/security' },
-  { name: 'Tech', icon: BsArrowUpRightCircle, link: '/tools/tech' },
-  { name: 'Developer', icon: BsArrowUpRightCircle, link: '/tools/developer' },
-  { name: 'News', icon: BsArrowUpRightCircle, link: '/tools/news' },
+  { name: 'Storage', icon: MdOutlineSdStorage, link: '/tools/storage' },
+  { name: 'Security', icon: MdSecurity, link: '/tools/security' },
+  { name: 'Tech', icon: DiTechcrunch, link: '/tools/tech' },
+  { name: 'Developer', icon: SiXdadevelopers, link: '/tools/developer' },
+  { name: 'News', icon: LuNewspaper, link: '/tools/news' },
 ];
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
@@ -115,10 +127,11 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
     >
       <Flex flexDirection={'column'} height={'100%'} justifyContent={'space-between'}>
         <Flex flexDirection={'column'}>
-          <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-            <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-              Zeus Wallet
-            </Text>
+          <Flex alignItems="center" mx="8" justifyContent="space-between" my="2">
+            <Link href="/" isExternal>
+              <Image src="/logo.png" alt="logo" width={160} height={0} />
+            </Link>
+
             <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
           </Flex>
 
@@ -339,7 +352,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       />
 
       <Box width={'100%'}>
-        <Flex alignItems={'center'} width={400}>
+        <Flex alignItems={'center'}>
           <Box borderWidth={1} ml={2}>
             <Menu>
               <MenuButton
@@ -363,7 +376,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             </Menu>
           </Box>
 
-          <Box ml={4}>
+          {/* <Box ml={4}>
             <Tooltip label="Copy">
               <Button
                 px={4}
@@ -387,12 +400,12 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                 <Text color={useColorModeValue('Gray.900', 'White')}>{formatEllipsisTxt(address)}</Text>
               </Button>
             </Tooltip>
-          </Box>
+          </Box> */}
         </Flex>
       </Box>
 
       <HStack spacing={{ base: '0', md: '6' }}>
-        <IconButton
+        {/* <IconButton
           aria-label=""
           icon={<AiOutlineEye />}
           bg={useColorModeValue('White', 'Gray.900')}
@@ -405,7 +418,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
           _focus={{
             bg: useColorModeValue('White', 'Gray.900'),
           }}
-        />
+        /> */}
         <Button
           px={4}
           ml={2}

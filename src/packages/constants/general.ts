@@ -1,5 +1,6 @@
 export const ZEUS_APP_NAME = 'ZEUSWALLET';
-export const ZEUS_APP_DESCRIPTION = 'Talk, Amplify, Post, Explore';
+export const ZEUS_APP_DESCRIPTION =
+  "Building the world's best cryptocurrency wallet tool, providing developers with the finest learning toolkits to help reduce learning costs and facilitate knowledge acquisition.";
 
 export const ZEUS_ENV = process.env.NEXT_PUBLIC_ENVIRONMENT ?? 'mainnet';
 export const IS_MAINNET = ZEUS_ENV === 'mainnet';

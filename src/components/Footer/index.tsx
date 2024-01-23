@@ -20,14 +20,10 @@ const Footer = () => {
     <Box p={{ base: 5, md: 8 }} maxW="5xl" marginInline="auto">
       <Stack spacing={{ base: 8, md: 0 }} justifyContent="space-between" direction={{ base: 'column', md: 'row' }}>
         <Box maxW={400}>
-          <Link href="/" isExternal>
-            <Text fontSize={20} fontWeight={'bold'}>
-              Zeus Wallet
-            </Text>
-          </Link>
+          <Image src="./logo.png" alt="logo" width={350} height={150} />
           <Text mt={2} color="gray.500" fontSize="md">
-            Developing the world&apos;s premier cryptocurrency wallet involves meticulously crafting a robust and
-            user-friendly platform with cutting-edge security features and seamless transaction capabilities.
+            Building the world&apos;s best cryptocurrency wallet tool, providing developers with the finest learning
+            toolkits to help reduce learning costs and facilitate knowledge acquisition.
           </Text>
         </Box>
         <HStack spacing={20} justifyContent={{ sm: 'space-between', md: 'normal' }}>

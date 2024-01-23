@@ -31,52 +31,52 @@ const Home = () => {
   const [chain, setChain] = useState<Chain>(Chain.ETH);
   const [checkStatus, setCheckStatus] = useState<boolean>();
 
-  const wallet = hydrateWallet();
+  // const wallet = hydrateWallet();
 
-  useEffect(() => {
-    setAddress(wallet.address);
-    setInputVal(wallet.address);
-    setChain(Chain.ETH);
-  }, [wallet.address]);
+  // useEffect(() => {
+  //   setAddress(wallet.address);
+  //   setInputVal(wallet.address);
+  //   setChain(Chain.ETH);
+  // }, [wallet.address]);
 
-  useEffect(() => {
-    async function init() {
-      if (await Web3.checkAddress(chain, wallet.address)) {
-        router.push('/portfolio');
-      }
-    }
-    init();
-  }, [chain, wallet.address, router]);
+  // useEffect(() => {
+  //   async function init() {
+  //     if (await Web3.checkAddress(chain, wallet.address)) {
+  //       router.push('/dashboard');
+  //     }
+  //   }
+  //   init();
+  // }, [chain, wallet.address, router]);
 
-  useEffect(() => {
-    async function checkInputStatus() {
-      if (await Web3.checkAddress(chain, inputVal)) {
-        setCheckStatus(true);
-      } else {
-        setCheckStatus(false);
-      }
-    }
-    checkInputStatus();
-  }, [inputVal, chain]);
+  // useEffect(() => {
+  //   async function checkInputStatus() {
+  //     if (await Web3.checkAddress(chain, inputVal)) {
+  //       setCheckStatus(true);
+  //     } else {
+  //       setCheckStatus(false);
+  //     }
+  //   }
+  //   checkInputStatus();
+  // }, [inputVal, chain]);
 
-  const handleEnterKeyPress = async (e: any) => {
-    if (e.key === 'Enter') {
-      if (await Web3.checkAddress(chain, inputVal)) {
-        setAddress(inputVal);
-        setWalletAddress({ address: inputVal });
-        router.push('/portfolio');
-      }
-    }
-  };
+  // const handleEnterKeyPress = async (e: any) => {
+  //   if (e.key === 'Enter') {
+  //     if (await Web3.checkAddress(chain, inputVal)) {
+  //       setAddress(inputVal);
+  //       setWalletAddress({ address: inputVal });
+  //       router.push('/dashboard');
+  //     }
+  //   }
+  // };
   return (
     <Container minW={'100%'} backgroundColor={useColorModeValue('white', 'gray.800')}>
-      <MetaTags title='Home' />
+      <MetaTags title="Home" />
       <HomeNav />
       <Container centerContent>
         <Heading marginBottom={6} lineHeight="tall" fontSize={30}>
           Explore all of Web3 in one place
         </Heading>
-        <Text fontSize={20}>Buy, stake, swap or bridge with crypto payment</Text>
+        <Text fontSize={20}>Discover, share, create or learn about cryptocurrency</Text>
 
         <Stack spacing={11} mt={10}>
           <InputGroup backgroundColor={useColorModeValue('white', 'gray.900')}>
@@ -85,7 +85,24 @@ const Home = () => {
             </InputLeftElement>
             <Input
               htmlSize={100}
-              type="tel"
+              type="search"
+              placeholder="Search everything you want to know about the web3"
+              value={inputVal}
+              onChange={(e) => {
+                setInputVal(e.target.value);
+              }}
+            />
+          </InputGroup>
+        </Stack>
+
+        {/* <Stack spacing={11} mt={10}>
+          <InputGroup backgroundColor={useColorModeValue('white', 'gray.900')}>
+            <InputLeftElement pointerEvents="none">
+              <SearchIcon color={useColorModeValue('black', 'white')} />
+            </InputLeftElement>
+            <Input
+              htmlSize={100}
+              type="search"
               placeholder="Track any EVM or Cosmos address or ENS name"
               value={inputVal}
               onChange={(e) => {
@@ -110,11 +127,20 @@ const Home = () => {
               </>
             )}
           </InputGroup>
-        </Stack>
+        </Stack> */}
         <Text mt={5}>Or</Text>
 
         <Box mt={5}>
-          <ConnectButton />
+          {/* <ConnectButton /> */}
+          <Button
+            colorScheme="teal"
+            size="lg"
+            onClick={() => {
+              router.push('/dashboard');
+            }}
+          >
+            Enter Page
+          </Button>
         </Box>
 
         <Box width={1000} mt={20}>

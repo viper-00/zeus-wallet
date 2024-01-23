@@ -1,4 +1,4 @@
-import { Box, Container, Flex, HStack, Text } from '@chakra-ui/react';
+import { Box, Container, Flex, HStack, Link, Image } from '@chakra-ui/react';
 import ConnectButton from 'components/ConnectButton';
 
 const HomeNav = () => {
@@ -6,12 +6,14 @@ const HomeNav = () => {
     <Box borderBottomColor="chakra-border-color">
       <Container maxW="container.xl" pt={'40px'} pb={'40px'}>
         <Flex align="center" justify="space-between">
-          <Text fontSize={30} fontWeight={'bold'}>ZEUS WALLET</Text>
+          <Link href="/" isExternal>
+            <Image src="./logo.png" alt="logo" width={200} height={100} />
+          </Link>
           {/* <NavBar /> */}
-          <HStack gap={'10px'}>
-            <ConnectButton />
+          {/* <HStack gap={'10px'}> */}
+            {/* <ConnectButton /> */}
             {/* <ColorModeButton /> */}
-          </HStack>
+          {/* </HStack> */}
         </Flex>
       </Container>
     </Box>
